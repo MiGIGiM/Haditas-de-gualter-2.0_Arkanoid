@@ -10,13 +10,11 @@ using System.Windows.Forms;
 
 namespace ProyectoArkanoid.Vista
 {
-    public partial class UCMain : UserControl
+    public partial class LoginControl : UserControl
     {
-        public UCMain()
+        public LoginControl()
         {
             InitializeComponent();
         }
-
-        
     }
 }

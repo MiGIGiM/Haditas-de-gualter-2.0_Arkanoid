@@ -1,6 +1,6 @@
 ﻿namespace ProyectoArkanoid.Vista
 {
-    partial class UCMain
+    partial class MainControl
     {
         /// <summary> 
         /// Variable del diseñador necesaria.
