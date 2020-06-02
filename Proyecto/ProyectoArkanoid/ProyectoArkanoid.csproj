@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Vista\FrmGame.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\FrmGame.Designer.cs">
+      <DependentUpon>FrmGame.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vista\FrmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,6 +82,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Vista\FrmGame.resx">
+      <DependentUpon>FrmGame.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Vista\FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -103,6 +112,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\LogoArka.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Fondo_06.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\paddle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ball.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

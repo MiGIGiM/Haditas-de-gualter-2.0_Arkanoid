@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProyectoArkanoid.Vista;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace ProyectoArkanoid
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmMain());
+            Application.Run(new FrmGame());
         }
     }
 }
