@@ -12,12 +12,14 @@ namespace ProyectoArkanoid.Vista
 {
     public partial class FrmGame : Form
     {
-        private int vSpeed, hSpeed;
+        private int vSpeed, hSpeed, lives = 3, score = 0;
         public FrmGame()
         {
             InitializeComponent();
-            vSpeed = 5;
-            hSpeed = 5;
+            vSpeed = 3;
+            hSpeed = 3;
+            lblLives.Text = lives.ToString();
+            lblScore.Text = "0000";
         }
 
         private void picPaddle_MouseMove(object sender, MouseEventArgs e)
@@ -32,11 +34,11 @@ namespace ProyectoArkanoid.Vista
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            //mover la pelota
+
             picBall.Top += vSpeed;
             picBall.Left += hSpeed;
+            picAlien.Left += hSpeed;
 
-            //hacer que no se salga de la pantalla
             if (picBall.Bounds.IntersectsWith(picPaddle.Bounds) || picBall.Bounds.IntersectsWith(picTop.Bounds))
             {
                 vSpeed = -vSpeed;
@@ -46,14 +48,38 @@ namespace ProyectoArkanoid.Vista
                 hSpeed = -hSpeed;
             }
 
+            if (picAlien.Right > this.ClientSize.Width || picAlien.Left < 0)
+            {
+                hSpeed = -hSpeed;
+            }
+            
 
+            if (picBall.Bounds.IntersectsWith(picAlien.Bounds) && picAlien.Visible)
+            {
+                vSpeed += 2;
+                picAlien.Visible = false;
+                vSpeed = -vSpeed;
+                hSpeed = -hSpeed;
+                score += 200;
+                lblScore.Text = score.ToString();
+            }
             
 
             if (picBall.Bottom > this.ClientSize.Height)
             {
+                if(lives == 0)
+                {
+                    MessageBox.Show("Has perdido.");
+                    Application.Exit();               
+                }
+                else
+                {
+                    lives -= 1;
+                    lblLives.Text = lives.ToString();
+                    System.Threading.Thread.Sleep(1000);
+                    picBall.Location = new Point(100, 150);
 
-                System.Threading.Thread.Sleep(1000);
-                picBall.Location = new Point(100, 150);
+                }
 
             }
         }

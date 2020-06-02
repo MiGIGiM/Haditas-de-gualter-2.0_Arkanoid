@@ -63,6 +63,16 @@ namespace ProyectoArkanoid.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Alien1 {
+            get {
+                object obj = ResourceManager.GetObject("Alien1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ball {
             get {
                 object obj = ResourceManager.GetObject("ball", resourceCulture);
@@ -116,6 +126,16 @@ namespace ProyectoArkanoid.Properties {
         internal static System.Drawing.Bitmap paddle1 {
             get {
                 object obj = ResourceManager.GetObject("paddle1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Vida_ {
+            get {
+                object obj = ResourceManager.GetObject("Vida ", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
