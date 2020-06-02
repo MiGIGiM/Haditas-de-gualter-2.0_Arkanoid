@@ -22,6 +22,12 @@ namespace ProyectoArkanoid.Vista
             lblScore.Text = "0000";
         }
 
+        private void FrmGame_Load(object sender, EventArgs e)
+        {
+
+
+        }
+
         private void picPaddle_MouseMove(object sender, MouseEventArgs e)
         {
             picPaddle.Left = e.X - (picPaddle.Width / 2);
@@ -69,7 +75,6 @@ namespace ProyectoArkanoid.Vista
             {
                 if(lives == 0)
                 {
-                    MessageBox.Show("Has perdido.");
                     Application.Exit();               
                 }
                 else
