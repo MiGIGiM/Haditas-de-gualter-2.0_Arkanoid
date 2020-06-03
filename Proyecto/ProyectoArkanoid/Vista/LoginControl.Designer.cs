@@ -31,7 +31,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tb_usuarios = new System.Windows.Forms.TextBox();
             this.btnLogin = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -47,7 +47,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Controls.Add(this.pictureBox1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.textBox1, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.tb_usuarios, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.btnLogin, 1, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
@@ -84,14 +84,14 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "USUARIO";
             // 
-            // textBox1
+            // tb_usuarios
             // 
-            this.textBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.textBox1.Font = new System.Drawing.Font("ArcadeClassic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(454, 213);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(250, 35);
-            this.textBox1.TabIndex = 2;
+            this.tb_usuarios.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.tb_usuarios.Font = new System.Drawing.Font("ArcadeClassic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb_usuarios.Location = new System.Drawing.Point(454, 213);
+            this.tb_usuarios.Name = "tb_usuarios";
+            this.tb_usuarios.Size = new System.Drawing.Size(250, 35);
+            this.tb_usuarios.TabIndex = 2;
             // 
             // btnLogin
             // 
@@ -125,7 +125,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tb_usuarios;
         private System.Windows.Forms.Button btnLogin;
     }
 }

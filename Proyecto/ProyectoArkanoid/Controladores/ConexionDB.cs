@@ -4,13 +4,14 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Npgsql;
 
 namespace ProyectoArkanoid.Controladores
 {
     class ConexionDB
     {
         private static string host = "127.0.0.1",
-            database = "Hugo",
+            database = "Project",
             userId = "postgres",
             password = "uca";
         private static string sConnection =
