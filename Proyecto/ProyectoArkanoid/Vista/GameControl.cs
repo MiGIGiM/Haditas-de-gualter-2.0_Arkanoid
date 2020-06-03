@@ -84,7 +84,5 @@ namespace ProyectoArkanoid
             picPaddle.Left = e.X - (picPaddle.Width / 2);
         }
 
-
-
     }
 }

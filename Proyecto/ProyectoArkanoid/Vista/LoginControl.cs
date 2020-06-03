@@ -35,22 +35,16 @@ namespace ProyectoArkanoid.Vista
 
                     if (dt.Rows.Count > 0)
                     {
-
                         var dataUsuario = dt.Rows[0];
 
                         u = new User(dataUsuario[0].ToString());
 
                         MessageBox.Show("Bienvenido");
-
                     }
                     else
                     {
                         ConnectionDB.ExecutenonQuery($"INSERT INTO PLAYER(nickname) VALUES('{tb_usuarios.Text}')");
-
                     }
-
-
-
                 }
                 catch (Exception ex)
                 {
