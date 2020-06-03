@@ -30,7 +30,7 @@ namespace ProyectoArkanoid.Vista
             {
                 try
                 {
-                    var dt = Connection.ExecuteQuery("SELECT * FROM PLAYER" +
+                    var dt = ConnectionDB.ExecuteQuery("SELECT * FROM PLAYER" +
                         $" WHERE nickname = '{tb_usuarios.Text}'");
 
                     if (dt.Rows.Count > 0)
@@ -45,7 +45,7 @@ namespace ProyectoArkanoid.Vista
                     }
                     else
                     {
-                        Connection.ExecutenonQuery($"INSERT INTO PLAYER(nickname) VALUES('{tb_usuarios.Text}')");
+                        ConnectionDB.ExecutenonQuery($"INSERT INTO PLAYER(nickname) VALUES('{tb_usuarios.Text}')");
 
                     }
 

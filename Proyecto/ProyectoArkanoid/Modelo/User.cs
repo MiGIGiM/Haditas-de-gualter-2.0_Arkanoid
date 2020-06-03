@@ -8,10 +8,7 @@ namespace ProyectoArkanoid.Controladores
 {
     public class User
     {
-        public String nickname
-        {
-            get;
-        }
+        public string nickname { get; }
 
         public User(string nickname)
         {

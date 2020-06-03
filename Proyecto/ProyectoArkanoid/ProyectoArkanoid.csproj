@@ -77,12 +77,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controladores\ConexionDB.cs" />
-    <Compile Include="Controladores\Usuario.cs" />
-    <Compile Include="GameControl.cs">
+    <Compile Include="Controladores\ConnectionDB.cs" />
+    <Compile Include="Controladores\TopTenController.cs" />
+    <Compile Include="Modelo\Score.cs" />
+    <Compile Include="Modelo\User.cs" />
+    <Compile Include="Vista\FrmTopTen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\FrmTopTen.Designer.cs">
+      <DependentUpon>FrmTopTen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\GameControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="GameControl.Designer.cs">
+    <Compile Include="Vista\GameControl.Designer.cs">
       <DependentUpon>GameControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Vista\FrmMain.cs">
@@ -105,7 +113,10 @@
     <Compile Include="Vista\MainControl.Designer.cs">
       <DependentUpon>MainControl.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="GameControl.resx">
+    <EmbeddedResource Include="Vista\FrmTopTen.resx">
+      <DependentUpon>FrmTopTen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\GameControl.resx">
       <DependentUpon>GameControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -161,6 +172,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Vida .png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Fondo_03.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trofeoBronce.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trofeoPlata.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trofeoOro.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\leaderboard.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -16,5 +16,13 @@ namespace ProyectoArkanoid.Vista
         {
             InitializeComponent();
         }
+
+        // Terminar la ejecucion del programa 
+        private void FrmTopTen_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
+
+
     }
 }
