@@ -10,6 +10,7 @@ namespace ProyectoArkanoid.Controladores
 {
     class ConexionDB
     {
+        //Cambien a sus crendenciales
         private static string host = "127.0.0.1",
             database = "Project",
             userId = "postgres",

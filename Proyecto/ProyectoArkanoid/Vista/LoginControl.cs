@@ -40,8 +40,15 @@ namespace ProyectoArkanoid.Vista
 
                         u = new Usuario(dataUsuario[0].ToString());
 
+                        MessageBox.Show("Bienvenido");
+
                     }
-                    //Hide();
+                    else
+                    {
+                        ConexionDB.ExecutenonQuery($"INSERT INTO PLAYER '{tb_usuarios.Text}'");
+
+                    }
+                    
                     
 
                 }
