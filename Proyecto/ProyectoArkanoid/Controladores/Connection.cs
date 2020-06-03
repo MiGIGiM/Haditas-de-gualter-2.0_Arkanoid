@@ -8,7 +8,7 @@ using Npgsql;
 
 namespace ProyectoArkanoid.Controladores
 {
-    class ConexionDB
+    class Connection
     {
         //Cambien a sus crendenciales
         private static string host = "127.0.0.1",

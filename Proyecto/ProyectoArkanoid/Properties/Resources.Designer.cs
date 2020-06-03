@@ -83,6 +83,16 @@ namespace ProyectoArkanoid.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Fondo_03 {
+            get {
+                object obj = ResourceManager.GetObject("Fondo_03", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Fondo_05 {
             get {
                 object obj = ResourceManager.GetObject("Fondo_05", resourceCulture);
@@ -96,6 +106,16 @@ namespace ProyectoArkanoid.Properties {
         internal static System.Drawing.Bitmap Fondo_06 {
             get {
                 object obj = ResourceManager.GetObject("Fondo_06", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap leaderboard {
+            get {
+                object obj = ResourceManager.GetObject("leaderboard", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -126,6 +146,36 @@ namespace ProyectoArkanoid.Properties {
         internal static System.Drawing.Bitmap paddle1 {
             get {
                 object obj = ResourceManager.GetObject("paddle1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap trofeoBronce {
+            get {
+                object obj = ResourceManager.GetObject("trofeoBronce", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap trofeoOro {
+            get {
+                object obj = ResourceManager.GetObject("trofeoOro", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap trofeoPlata {
+            get {
+                object obj = ResourceManager.GetObject("trofeoPlata", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

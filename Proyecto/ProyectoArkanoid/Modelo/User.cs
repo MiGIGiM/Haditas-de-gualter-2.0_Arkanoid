@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace ProyectoArkanoid.Controladores
 {
-    public class Usuario
+    public class User
     {
         public String nickname
         {
             get;
         }
 
-        public Usuario(string nickname)
+        public User(string nickname)
         {
             this.nickname = nickname;
         }

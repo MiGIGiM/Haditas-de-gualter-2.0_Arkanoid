@@ -14,7 +14,7 @@ namespace ProyectoArkanoid.Vista
 
     public partial class LoginControl : UserControl
     {
-        private Usuario u;
+        private User u;
         public LoginControl()
         {
             InitializeComponent();
@@ -30,7 +30,7 @@ namespace ProyectoArkanoid.Vista
             {
                 try
                 {
-                    var dt = ConexionDB.ExecuteQuery("SELECT * FROM PLAYER" +
+                    var dt = Connection.ExecuteQuery("SELECT * FROM PLAYER" +
                         $" WHERE nickname = '{tb_usuarios.Text}'");
 
                     if (dt.Rows.Count > 0)
@@ -38,14 +38,14 @@ namespace ProyectoArkanoid.Vista
 
                         var dataUsuario = dt.Rows[0];
 
-                        u = new Usuario(dataUsuario[0].ToString());
+                        u = new User(dataUsuario[0].ToString());
 
                         MessageBox.Show("Bienvenido");
 
                     }
                     else
                     {
-                        ConexionDB.ExecutenonQuery($"INSERT INTO PLAYER(nickname) VALUES('{tb_usuarios.Text}')");
+                        Connection.ExecutenonQuery($"INSERT INTO PLAYER(nickname) VALUES('{tb_usuarios.Text}')");
 
                     }
 
