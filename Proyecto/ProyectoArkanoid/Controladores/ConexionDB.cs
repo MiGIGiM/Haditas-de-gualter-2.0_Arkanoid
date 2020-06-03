@@ -14,7 +14,7 @@ namespace ProyectoArkanoid.Controladores
         private static string host = "127.0.0.1",
             database = "Project",
             userId = "postgres",
-            password = "uca";
+            password = "123456";
         private static string sConnection =
             $"Server={host};Port=5432; User Id={userId}; Password={password}; Database={database}";
 

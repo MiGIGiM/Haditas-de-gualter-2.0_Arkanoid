@@ -11,7 +11,7 @@ using ProyectoArkanoid.Controladores;
 
 namespace ProyectoArkanoid.Vista
 {
-    
+
     public partial class LoginControl : UserControl
     {
         private Usuario u;
@@ -45,11 +45,11 @@ namespace ProyectoArkanoid.Vista
                     }
                     else
                     {
-                        ConexionDB.ExecutenonQuery($"INSERT INTO PLAYER '{tb_usuarios.Text}'");
+                        ConexionDB.ExecutenonQuery($"INSERT INTO PLAYER(nickname) VALUES('{tb_usuarios.Text}')");
 
                     }
-                    
-                    
+
+
 
                 }
                 catch (Exception ex)
