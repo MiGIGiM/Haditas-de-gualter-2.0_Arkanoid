@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,10 +10,10 @@ using System.Windows.Forms;
 
 namespace ProyectoArkanoid.Vista
 {
-    public partial class FrmGame : Form
+    public partial class GameControl : UserControl
     {
         private int vSpeed, hSpeed, lives = 3, score = 0;
-        public FrmGame()
+        public GameControl()
         {
             InitializeComponent();
             vSpeed = 3;
@@ -22,30 +22,18 @@ namespace ProyectoArkanoid.Vista
             lblScore.Text = "0000";
         }
 
-        private void FrmGame_Load(object sender, EventArgs e)
-        {
-
-
-        }
-
-        private void picPaddle_MouseMove(object sender, MouseEventArgs e)
-        {
-            picPaddle.Left = e.X - (picPaddle.Width / 2);
-        }
-
-        private void FrmGame_MouseMove(object sender, MouseEventArgs e)
+        private void GameControl_MouseMove(object sender, MouseEventArgs e)
         {
             picPaddle.Left = e.X - (picPaddle.Width / 2);
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-
             picBall.Top += vSpeed;
             picBall.Left += hSpeed;
             picAlien.Left += hSpeed;
 
-            if (picBall.Bounds.IntersectsWith(picPaddle.Bounds) || picBall.Bounds.IntersectsWith(picTop.Bounds))
+            if (picBall.Bounds.IntersectsWith(picPaddle.Bounds) || picBall.Bounds.IntersectsWith(tableTTop.Bounds))
             {
                 vSpeed = -vSpeed;
             }
@@ -58,8 +46,8 @@ namespace ProyectoArkanoid.Vista
             {
                 hSpeed = -hSpeed;
             }
-            
 
+            /*
             if (picBall.Bounds.IntersectsWith(picAlien.Bounds) && picAlien.Visible)
             {
                 vSpeed += 2;
@@ -68,14 +56,14 @@ namespace ProyectoArkanoid.Vista
                 hSpeed = -hSpeed;
                 score += 200;
                 lblScore.Text = score.ToString();
-            }
-            
+            }*/
+
 
             if (picBall.Bottom > this.ClientSize.Height)
             {
-                if(lives == 0)
+                if (lives == 0)
                 {
-                    Application.Exit();               
+                    Application.Exit();
                 }
                 else
                 {
