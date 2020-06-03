@@ -104,3 +104,4 @@ C:\Users\irene\Documents\Workspaces\POO\Haditas-de-gualter-2.0_Arkanoid\Proyecto
 C:\Users\irene\Documents\Workspaces\POO\Haditas-de-gualter-2.0_Arkanoid\Proyecto\ProyectoArkanoid\obj\Debug\ProyectoArkanoid.csproj.CopyComplete
 C:\Users\irene\Documents\Workspaces\POO\Haditas-de-gualter-2.0_Arkanoid\Proyecto\ProyectoArkanoid\obj\Debug\ProyectoArkanoid.exe
 C:\Users\irene\Documents\Workspaces\POO\Haditas-de-gualter-2.0_Arkanoid\Proyecto\ProyectoArkanoid\obj\Debug\ProyectoArkanoid.pdb
+C:\Users\fmrod\OneDrive\Documentos\GitHub\Haditas-de-gualter-2.0_Arkanoid\Proyecto\ProyectoArkanoid\obj\Debug\ProyectoArkanoid.Vista.FrmTopTen.resources

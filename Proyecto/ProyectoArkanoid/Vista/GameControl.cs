@@ -7,27 +7,100 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ProyectoArkanoid.Controladores;
+using ProyectoArkanoid.Vista;
 
 namespace ProyectoArkanoid
 {
     public partial class GameControl : UserControl
     {
-        private int vSpeed, hSpeed, lives = 3, score = 0;
+        private int vSpeed, hSpeed, hSpeedA, hSpeedB, hSpeedC, lives = 3, score = 0;
+        private const int row = 16, col = 11;
+        private BlocksRemove[,] blocks;
+
 
         public GameControl()
         {
             InitializeComponent();
+        }
+
+        private void GameControl_Load(object sender, EventArgs e)
+        {
             vSpeed = 3;
-            hSpeed = 3;
+            hSpeedC = hSpeedB = hSpeedA = hSpeed = 3;
+            setBlocks();
             lblLives.Text = lives.ToString();
             lblScore.Text = "0000";
+            lblEnd.Hide();
         }
+
+        private void GameControl_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                Application.Exit();
+            }
+            else if (e.KeyCode == Keys.Enter)
+            {
+                Application.Restart();
+            }
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+
+
+            picAlien.Left += hSpeedA;
+            picAlien2.Left += hSpeedB;
+            picAlien3.Left += hSpeedC;
+
+            if (picAlien.Right > this.ClientSize.Width || picAlien.Left < 0)
+            {
+                hSpeedA = -hSpeedA;
+            }
+
+            if (picAlien2.Right > this.ClientSize.Width || picAlien2.Left < 0)
+            {
+                hSpeedB = -hSpeedB;
+            }
+
+            for (int x = 5; x < row; x++)
+            {
+                for (int y = 3; y < col; y++)
+                {
+                    if (picAlien2.Bounds.IntersectsWith(blocks[x, y].Bounds) || picAlien2.Left < 0)
+                    {
+                        hSpeedB = -hSpeedB;
+                    }
+
+                }
+            }
+            
+            if (picAlien3.Right > this.ClientSize.Width || picAlien3.Left < 0)
+            {
+                hSpeedC = -hSpeedC;
+            }
+
+            for (int x = 5; x < row; x++)
+            {
+                for (int y = 3; y < col; y++)
+                {
+                    if (picAlien3.Bounds.IntersectsWith(blocks[x, y].Bounds) || picAlien3.Right > this.ClientSize.Width)
+                    {
+                        hSpeedC = -hSpeedC;
+                    }
+
+                }
+            }
+
+
+        }
+
 
         private void timer1_Tick(object sender, EventArgs e)
         {
             picBall.Top += vSpeed;
             picBall.Left += hSpeed;
-            picAlien.Left += hSpeed;
 
             //Este if se utiliza para hacer que la pelota cambie el sentido de su 
             //movimiento cuando "choca" con los controles en la parte superior
@@ -41,13 +114,8 @@ namespace ProyectoArkanoid
             {
                 hSpeed = -hSpeed;
             }
-
-            if (picAlien.Right > this.ClientSize.Width || picAlien.Left < 0)
-            {
-                hSpeed = -hSpeed;
-            }
-
-            /*
+            
+            //Cuando la pelota toca a los aliens, desapareces y suman puntos
             if (picBall.Bounds.IntersectsWith(picAlien.Bounds) && picAlien.Visible)
             {
                 vSpeed += 2;
@@ -56,25 +124,71 @@ namespace ProyectoArkanoid
                 hSpeed = -hSpeed;
                 score += 200;
                 lblScore.Text = score.ToString();
-            }*/
+            }
 
-            //Si la pelota toca el limite superior del forms, el usuario pierde una vida.
+            if (picBall.Bounds.IntersectsWith(picAlien2.Bounds) && picAlien2.Visible)
+            {
+                vSpeed += 2;
+                picAlien2.Visible = false;
+                vSpeed = -vSpeed;
+                hSpeed = -hSpeed;
+                score += 200;
+                lblScore.Text = score.ToString();
+            }
+            if (picBall.Bounds.IntersectsWith(picAlien3.Bounds) && picAlien3.Visible)
+            {
+                vSpeed += 2;
+                picAlien3.Visible = false;
+                vSpeed = -vSpeed;
+                hSpeed = -hSpeed;
+                score += 200;
+                lblScore.Text = score.ToString();
+            }
+
+            //Si la pelota toca el limite inferior del control, el usuario pierde una vida.
             if (picBall.Bottom > this.ClientSize.Height)
             {
-                if (lives == 0)
+                if (lives == 1)
                 {
-                    Application.Exit();
+                    timer1.Enabled = false;
+                    timer2.Enabled = false;
+                    lblEnd.Location = new Point(ClientSize.Width / 2, ClientSize.Height / 2);
+                    lblEnd.Show();
                 }
                 else
                 {
                     lives -= 1;
                     lblLives.Text = lives.ToString();
                     System.Threading.Thread.Sleep(1000);
-                    picBall.Location = new Point(100, 150);
-
+                    picBall.Location = new Point(81, 392);
                 }
 
             }
+
+            //eliminar los bloques que la pelota toca
+            for (int x = 5; x < row; x++)
+            {
+                for (int y = 3; y < col; y++)
+                {
+                    if (picBall.Bounds.IntersectsWith(blocks[x, y].Bounds) && blocks[x, y].Visible)
+                    {
+                        blocks[x, y].BackgroundImage = Image.FromFile("../../Resources/Tile---violet.png");
+                        blocks[x, y].BorrarBloque();
+                        vSpeed = -vSpeed;
+                        score += 50;
+                        lblScore.Text = score.ToString();
+                    }
+                }
+            }
+
+
+            //Estos if sirven para "acelerar" la pelota 
+            if (score > 500)
+                timer1.Interval = 10;
+            else if(score > 1000)
+                timer1.Interval = 5;
+            else if (score > 2000)
+                timer1.Interval = 1;
         }
 
         private void GameControl_MouseMove(object sender, MouseEventArgs e)
@@ -82,6 +196,34 @@ namespace ProyectoArkanoid
             //Esta linea se usa para hacer que la barra siga al mouse
             //Se divide entre 2 para que el mouse se posicione al centro de la barra y sea mas facil de seguir
             picPaddle.Left = e.X - (picPaddle.Width / 2);
+        }
+
+        //Este metodo sirve para crear los bloques
+        private void setBlocks()
+        {
+            int blockHeight = 25, blockWidth = 100;
+
+            blocks = new BlocksRemove[row, col];
+
+            for (int x = 5; x < row; x++)
+            {
+                for (int y = 3; y < col; y++)
+                {
+                    blocks[x, y] = new BlocksRemove(0);
+
+                    blocks[x, y].Width = blockWidth;
+                    blocks[x, y].Height = blockHeight;
+
+                    blocks[x, y].Top = blockHeight * x;
+                    blocks[x, y].Left = blockWidth * y;
+
+                    blocks[x, y].BackgroundImage = Image.FromFile("../../Resources/Tile - violet.png");
+                    blocks[x, y].BackgroundImageLayout = ImageLayout.Stretch;
+
+                    this.Controls.Add(blocks[x, y]);
+                }
+            }
+
         }
 
     }

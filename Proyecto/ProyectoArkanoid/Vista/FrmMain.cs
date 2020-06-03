@@ -20,7 +20,7 @@ namespace ProyectoArkanoid.Vista
         }
         private void FrmMain_Load(object sender, EventArgs e)
         {
-            current = new LoginControl(); //se debe cambiar a MainControl despues
+            current = new GameControl(); //se debe cambiar a MainControl despues
             current.Dock = DockStyle.Fill;
             tableLayoutPanel1.Controls.Add(current, 0, 0);
             tableLayoutPanel1.SetRowSpan(current, 2);
