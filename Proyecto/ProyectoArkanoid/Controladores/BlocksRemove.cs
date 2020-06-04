@@ -24,9 +24,7 @@ namespace ProyectoArkanoid.Controladores
         public void BorrarBloque()
         {
             if (setContador() == 2)
-            {
                 this.Visible = false;
-            }
             else
                 setContador();
         }

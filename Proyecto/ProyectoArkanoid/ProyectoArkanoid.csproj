@@ -200,5 +200,10 @@
   <ItemGroup>
     <None Include="Resources\Tile---mint.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Tile - lightblue.png" />
+    <Content Include="Resources\Tile - pink.png" />
+    <Content Include="Resources\Tile - violet.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

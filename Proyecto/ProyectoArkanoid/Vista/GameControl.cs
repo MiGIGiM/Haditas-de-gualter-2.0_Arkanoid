@@ -33,7 +33,6 @@ namespace ProyectoArkanoid
             lblScore.Text = "0000";
             lblEnd.Hide();
         }
-
         private void GameControl_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
@@ -48,8 +47,6 @@ namespace ProyectoArkanoid
 
         private void timer2_Tick(object sender, EventArgs e)
         {
-
-
             picAlien.Left += hSpeedA;
             picAlien2.Left += hSpeedB;
             picAlien3.Left += hSpeedC;
@@ -75,7 +72,7 @@ namespace ProyectoArkanoid
 
                 }
             }
-            
+
             if (picAlien3.Right > this.ClientSize.Width || picAlien3.Left < 0)
             {
                 hSpeedC = -hSpeedC;
@@ -92,11 +89,7 @@ namespace ProyectoArkanoid
 
                 }
             }
-
-
         }
-
-
         private void timer1_Tick(object sender, EventArgs e)
         {
             picBall.Top += vSpeed;
@@ -114,7 +107,7 @@ namespace ProyectoArkanoid
             {
                 hSpeed = -hSpeed;
             }
-            
+
             //Cuando la pelota toca a los aliens, desapareces y suman puntos
             if (picBall.Bounds.IntersectsWith(picAlien.Bounds) && picAlien.Visible)
             {
@@ -180,12 +173,10 @@ namespace ProyectoArkanoid
                     }
                 }
             }
-
-
             //Estos if sirven para "acelerar" la pelota 
-            if (score > 500)
-                timer1.Interval = 10;
-            else if(score > 1000)
+            if (score <= 500)
+                timer1.Interval = 20;
+            else if (score > 1000)
                 timer1.Interval = 5;
             else if (score > 2000)
                 timer1.Interval = 1;
@@ -217,7 +208,7 @@ namespace ProyectoArkanoid
                     blocks[x, y].Top = blockHeight * x;
                     blocks[x, y].Left = blockWidth * y;
 
-                    blocks[x, y].BackgroundImage = Image.FromFile("../../Resources/Tile - violet.png");
+                    blocks[x, y].BackgroundImage = Image.FromFile("../../Resources/Tile - pink.png");
                     blocks[x, y].BackgroundImageLayout = ImageLayout.Stretch;
 
                     this.Controls.Add(blocks[x, y]);
