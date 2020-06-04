@@ -14,7 +14,7 @@ namespace ProyectoArkanoid
 {
     public partial class GameControl : UserControl
     {
-        private int vSpeed, hSpeed, hSpeedA, hSpeedB, hSpeedC, lives = 3, score = 0;
+        private int vSpeed, hSpeed, hSpeedA, hSpeedB, hSpeedC, lives = 3, score = 0, cont = 0;
         private const int row = 16, col = 11;
         private BlocksRemove[,] blocks;
 
@@ -117,6 +117,7 @@ namespace ProyectoArkanoid
                 hSpeed = -hSpeed;
                 score += 200;
                 lblScore.Text = score.ToString();
+                cont++;
             }
 
             if (picBall.Bounds.IntersectsWith(picAlien2.Bounds) && picAlien2.Visible)
@@ -127,6 +128,7 @@ namespace ProyectoArkanoid
                 hSpeed = -hSpeed;
                 score += 200;
                 lblScore.Text = score.ToString();
+                cont++;
             }
             if (picBall.Bounds.IntersectsWith(picAlien3.Bounds) && picAlien3.Visible)
             {
@@ -136,6 +138,7 @@ namespace ProyectoArkanoid
                 hSpeed = -hSpeed;
                 score += 200;
                 lblScore.Text = score.ToString();
+                cont++;
             }
 
             //Si la pelota toca el limite inferior del control, el usuario pierde una vida.
@@ -170,16 +173,21 @@ namespace ProyectoArkanoid
                         vSpeed = -vSpeed;
                         score += 50;
                         lblScore.Text = score.ToString();
+                        cont++;
                     }
                 }
             }
-            //Estos if sirven para "acelerar" la pelota 
-            if (score <= 500)
-                timer1.Interval = 20;
-            else if (score > 1000)
-                timer1.Interval = 5;
-            else if (score > 2000)
+            //Este if sirve para "acelerar" la pelota 
+            if (score > 2000)
                 timer1.Interval = 1;
+            //Si el contador llega a 179, significa que ya no hay mas bloques en el nivel y el jugador gana
+            if(cont == 179)
+            {
+                lblEnd.Text = "Has ganado! \nPresione enter para regresar al menu.";
+                lblEnd.Show();
+                timer1.Enabled = timer2.Enabled = false;
+                picPaddle.Visible = picBall.Visible = false;
+            }
         }
 
         private void GameControl_MouseMove(object sender, MouseEventArgs e)
