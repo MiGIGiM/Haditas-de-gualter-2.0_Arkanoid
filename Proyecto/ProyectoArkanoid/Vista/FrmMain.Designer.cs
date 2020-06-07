@@ -46,9 +46,8 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "FrmMain";
             this.Text = "Form1";
-            this.ResumeLayout(false);
             this.Load += new System.EventHandler(this.FrmMain_Load);
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.ResumeLayout(false);
 
         }
 

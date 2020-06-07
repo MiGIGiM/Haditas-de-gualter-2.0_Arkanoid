@@ -11,6 +11,10 @@ namespace ProyectoArkanoid.Controladores
     {
         public int contador { get; set; }
 
+        public BlocksRemove() : base()
+        {
+        }
+
         public BlocksRemove(int contador) : base()
         {
             this.contador = contador;

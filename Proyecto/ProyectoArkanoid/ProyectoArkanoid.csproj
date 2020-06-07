@@ -90,12 +90,6 @@
     <Compile Include="Vista\FrmTopTen.Designer.cs">
       <DependentUpon>FrmTopTen.cs</DependentUpon>
     </Compile>
-    <Compile Include="Vista\GameControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Vista\GameControl.Designer.cs">
-      <DependentUpon>GameControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="Vista\FrmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,6 +98,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Vista\GameControls.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vista\GameControls.Designer.cs">
+      <DependentUpon>GameControls.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vista\LoginControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -119,9 +119,6 @@
     <EmbeddedResource Include="Vista\FrmTopTen.resx">
       <DependentUpon>FrmTopTen.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Vista\GameControl.resx">
-      <DependentUpon>GameControl.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -134,6 +131,9 @@
     </Compile>
     <EmbeddedResource Include="Vista\FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\GameControls.resx">
+      <DependentUpon>GameControls.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vista\LoginControl.resx">
       <DependentUpon>LoginControl.cs</DependentUpon>
@@ -197,13 +197,13 @@
   <ItemGroup>
     <None Include="Resources\alien5.png" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <None Include="Resources\Tile---mint.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Resources\Tile - lightblue.png" />
-    <Content Include="Resources\Tile - pink.png" />
-    <Content Include="Resources\Tile - violet.png" />
+    <None Include="Resources\4.png" />
+    <None Include="Resources\3.png" />
+    <None Include="Resources\2.png" />
+    <None Include="Resources\1.png" />
+    <Content Include="Resources\Tile---mint.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
