@@ -124,10 +124,49 @@ namespace ProyectoArkanoid.Vista
             //las variables establecidas en la clase estatica para que la pelota se mueva.
             picBall.Left += DatosJuego.dirX;
             picBall.Top += DatosJuego.dirY;
-
-            //RebotarPelota();
+            
+            RebotarPelota();
         }
 
+        private void RebotarPelota()
+        {
+            //Si la pelota toca la parte inferior del control, el usuario ha perdido
+            if (picBall.Bottom > Height)
+                Application.Exit();
 
+            //Si la pelota toca los bordes izq o der, rebota
+            if (picBall.Left < 0 || picBall.Right > Width)
+            {
+                DatosJuego.dirX = -DatosJuego.dirX;
+                return;
+            }
+
+            //Rebotar la pelota cuando choca con la barra del jugador
+            if (picBall.Bounds.IntersectsWith(picPaddle.Bounds))
+            {
+                DatosJuego.dirY = -DatosJuego.dirY;
+            }
+            //la variable i se disminuye ya que se esta iniciando desde la fila mas cercana a la pelota
+            //esto se hace para hacer el menor numero de verificaciones posible
+            for (int i = 6; i >= 0; i--)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    //Cuando la pelota choca con un bloque, este se elimina y la pelota rebota
+                    // y se mueve hacia el otro lado
+                    if (picBall.Bounds.IntersectsWith(cpb[i, j].Bounds))
+                    {
+                        cpb[i, j].Golpes--;
+                        if (cpb[i, j].Golpes == 0)
+                            Controls.Remove(cpb[i, j]);
+
+                        DatosJuego.dirY = -DatosJuego.dirY;
+
+                        return;
+
+                    }
+                }
+            }
+        }
     }
 }
