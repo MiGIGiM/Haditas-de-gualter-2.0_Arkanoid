@@ -51,6 +51,7 @@
             this.Name = "GameControls";
             this.Size = new System.Drawing.Size(705, 458);
             this.Load += new System.EventHandler(this.GameControls_Load);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.GameControls_MouseMove);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 

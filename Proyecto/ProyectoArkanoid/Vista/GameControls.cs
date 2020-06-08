@@ -69,5 +69,11 @@ namespace ProyectoArkanoid.Vista
         {
             return new Random().Next(1, 7);
         }
+
+        private void GameControls_MouseMove(object sender, MouseEventArgs e)
+        {
+            if(e.X < (Width - pictureBox1.Width))
+            pictureBox1.Left = e.X;
+        }
     }
 }
