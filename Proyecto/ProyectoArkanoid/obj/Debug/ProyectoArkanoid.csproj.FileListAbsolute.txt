@@ -10,7 +10,6 @@ C:\Users\fmrod\OneDrive\Documentos\GitHub\Haditas-de-gualter-2.0_Arkanoid\Proyec
 C:\Users\fmrod\OneDrive\Documentos\GitHub\Haditas-de-gualter-2.0_Arkanoid\Proyecto\ProyectoArkanoid\obj\Debug\ProyectoArkanoid.csproj.CoreCompileInputs.cache
 C:\Users\fmrod\OneDrive\Documentos\GitHub\Haditas-de-gualter-2.0_Arkanoid\Proyecto\ProyectoArkanoid\obj\Debug\ProyectoArkanoid.exe
 C:\Users\fmrod\OneDrive\Documentos\GitHub\Haditas-de-gualter-2.0_Arkanoid\Proyecto\ProyectoArkanoid\obj\Debug\ProyectoArkanoid.pdb
-C:\Users\aleja\Desktop\Haditas-de-gualter-2.0_Arkanoid\Proyecto\ProyectoArkanoid\obj\Debug\ProyectoArkanoid.GameControl.resources
 C:\Users\aleja\Desktop\Haditas-de-gualter-2.0_Arkanoid\Proyecto\ProyectoArkanoid\obj\Debug\ProyectoArkanoid.Properties.Resources.resources
 C:\Users\aleja\Desktop\Haditas-de-gualter-2.0_Arkanoid\Proyecto\ProyectoArkanoid\obj\Debug\ProyectoArkanoid.Vista.FrmMain.resources
 C:\Users\aleja\Desktop\Haditas-de-gualter-2.0_Arkanoid\Proyecto\ProyectoArkanoid\obj\Debug\ProyectoArkanoid.Vista.LoginControl.resources
@@ -105,3 +104,5 @@ C:\Users\irene\Documents\Workspaces\POO\Haditas-de-gualter-2.0_Arkanoid\Proyecto
 C:\Users\irene\Documents\Workspaces\POO\Haditas-de-gualter-2.0_Arkanoid\Proyecto\ProyectoArkanoid\obj\Debug\ProyectoArkanoid.pdb
 C:\Users\fmrod\OneDrive\Documentos\GitHub\Haditas-de-gualter-2.0_Arkanoid\Proyecto\ProyectoArkanoid\obj\Debug\ProyectoArkanoid.Vista.FrmTopTen.resources
 C:\Users\irene\Documents\Workspaces\POO\Haditas-de-gualter-2.0_Arkanoid\Proyecto\ProyectoArkanoid\obj\Debug\ProyectoArkanoid.Vista.GameControls.resources
+C:\Users\aleja\Desktop\Haditas-de-gualter-2.0_Arkanoid\Proyecto\ProyectoArkanoid\obj\Debug\ProyectoArkanoid.Vista.FrmTopTen.resources
+C:\Users\aleja\Desktop\Haditas-de-gualter-2.0_Arkanoid\Proyecto\ProyectoArkanoid\obj\Debug\ProyectoArkanoid.Vista.GameControls.resources

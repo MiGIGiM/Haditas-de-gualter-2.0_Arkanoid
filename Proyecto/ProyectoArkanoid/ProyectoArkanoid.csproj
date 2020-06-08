@@ -77,10 +77,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controladores\BlocksRemove.cs">
+    <Compile Include="Controladores\ConnectionDB.cs" />
+    <Compile Include="Controladores\CustomPictureBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controladores\ConnectionDB.cs" />
     <Compile Include="Controladores\TopTenController.cs" />
     <Compile Include="Modelo\Score.cs" />
     <Compile Include="Modelo\User.cs" />
