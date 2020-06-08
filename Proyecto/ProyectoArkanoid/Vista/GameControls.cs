@@ -14,6 +14,7 @@ namespace ProyectoArkanoid.Vista
     public partial class GameControls : UserControl
     {
         private CustomPictureBox[,] cpb;
+        private PictureBox picBall;
         public GameControls()
         {
             InitializeComponent();
@@ -23,14 +24,31 @@ namespace ProyectoArkanoid.Vista
         private void GameControls_Load(object sender, EventArgs e)
         {
             // Se carga al picture box la imagen que se usara como la barra del juego
-            pictureBox1.BackgroundImage = Image.FromFile("../../Resources/paddle.png");
-            pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
+            picPaddle.BackgroundImage = Image.FromFile("../../Resources/paddle.png");
+            picPaddle.BackgroundImageLayout = ImageLayout.Stretch;
 
             // Se ajusta la posicion de la barra para que se vea de manera adecuada 
-            pictureBox1.Top = ((Height - pictureBox1.Height) - 90);
+            picPaddle.Top = ((Height - picPaddle.Height) - 90);
+            // Se ajusta la posicion de la barra para que inicie al centro de la pantalla 
+            picPaddle.Left = (Width / 2) - (picPaddle.Width / 2);
+
+            //Instanciacion de la pelota
+            picBall = new PictureBox();
+            picBall.Width = picBall.Height = 20;
+            picBall.BackgroundImage = Image.FromFile("../../Resources/ball.png");
+            picBall.BackgroundImageLayout = ImageLayout.Stretch;
+
+            //Definir la posicion para que la pelota empiece encima de la barra
+            picBall.Top = picPaddle.Top - picBall.Height;
+            picBall.Left = picPaddle.Left + (picPaddle.Width / 2) - (picBall.Width / 2);
+            //Se pone el color de fondo del picturebox a transparente
+            picBall.BackColor = Color.Transparent;
+
+            Controls.Add(picBall);
+
 
             LoadTiles();
-
+            timer1.Start();
         }
         private void LoadTiles()
         {
@@ -72,8 +90,44 @@ namespace ProyectoArkanoid.Vista
 
         private void GameControls_MouseMove(object sender, MouseEventArgs e)
         {
-            if(e.X < (Width - pictureBox1.Width))
-            pictureBox1.Left = e.X;
+            if (!DatosJuego.juegoIniciado)
+            {
+                if (e.X < (Width - picPaddle.Width))
+                {
+                    picPaddle.Left = e.X;
+                    picBall.Left = picPaddle.Left + (picPaddle.Width / 2) + (picBall.Width / 2);
+                }
+
+
+            }
+            else
+            {
+                if (e.X < (Width - picPaddle.Width))
+                    picPaddle.Left = e.X;
+            }
+
         }
+
+        private void GameControls_KeyDown(object sender, KeyEventArgs e)
+        {
+            //Al presionar la barra espaciadora, el juego comienza
+            if (e.KeyCode == Keys.Space)
+                DatosJuego.juegoIniciado = true;
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            //Si el juego no ha iniciado, no se hace nada
+            if (!DatosJuego.juegoIniciado)
+                return;
+            //Por otro lado, si el juego ya empezo, se aumentan los valores de left y top con
+            //las variables establecidas en la clase estatica para que la pelota se mueva.
+            picBall.Left += DatosJuego.dirX;
+            picBall.Top += DatosJuego.dirY;
+
+            //RebotarPelota();
+        }
+
+
     }
 }

@@ -28,18 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.components = new System.ComponentModel.Container();
+            this.picPaddle = new System.Windows.Forms.PictureBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.picPaddle)).BeginInit();
             this.SuspendLayout();
             // 
-            // pictureBox1
+            // picPaddle
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Location = new System.Drawing.Point(27, 366);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(234, 40);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.picPaddle.BackColor = System.Drawing.Color.Transparent;
+            this.picPaddle.Location = new System.Drawing.Point(27, 366);
+            this.picPaddle.Name = "picPaddle";
+            this.picPaddle.Size = new System.Drawing.Size(200, 40);
+            this.picPaddle.TabIndex = 0;
+            this.picPaddle.TabStop = false;
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // GameControls
             // 
@@ -47,18 +53,20 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::ProyectoArkanoid.Properties.Resources.Fondo_06;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.picPaddle);
             this.Name = "GameControls";
             this.Size = new System.Drawing.Size(705, 458);
             this.Load += new System.EventHandler(this.GameControls_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GameControls_KeyDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.GameControls_MouseMove);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picPaddle)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox picPaddle;
+        private System.Windows.Forms.Timer timer1;
     }
 }
