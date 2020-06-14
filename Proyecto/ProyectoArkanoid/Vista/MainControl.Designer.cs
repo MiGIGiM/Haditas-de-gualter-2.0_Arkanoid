@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnGoOut = new System.Windows.Forms.Button();
+            this.btnLeaderboards = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnPlay = new System.Windows.Forms.Button();
-            this.btnLeaderboards = new System.Windows.Forms.Button();
-            this.btnGoOut = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -60,6 +60,36 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(730, 464);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
+            // btnGoOut
+            // 
+            this.btnGoOut.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnGoOut.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnGoOut.BackColor = System.Drawing.Color.DarkSlateBlue;
+            this.btnGoOut.FlatAppearance.BorderSize = 0;
+            this.btnGoOut.Font = new System.Drawing.Font("ArcadeClassic", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGoOut.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnGoOut.Location = new System.Drawing.Point(245, 379);
+            this.btnGoOut.Name = "btnGoOut";
+            this.btnGoOut.Size = new System.Drawing.Size(240, 53);
+            this.btnGoOut.TabIndex = 3;
+            this.btnGoOut.Text = "SALIR";
+            this.btnGoOut.UseVisualStyleBackColor = false;
+            // 
+            // btnLeaderboards
+            // 
+            this.btnLeaderboards.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnLeaderboards.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnLeaderboards.BackColor = System.Drawing.Color.DarkSlateBlue;
+            this.btnLeaderboards.FlatAppearance.BorderSize = 0;
+            this.btnLeaderboards.Font = new System.Drawing.Font("ArcadeClassic", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLeaderboards.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnLeaderboards.Location = new System.Drawing.Point(245, 263);
+            this.btnLeaderboards.Name = "btnLeaderboards";
+            this.btnLeaderboards.Size = new System.Drawing.Size(240, 53);
+            this.btnLeaderboards.TabIndex = 2;
+            this.btnLeaderboards.Text = "LEADERBOARDS";
+            this.btnLeaderboards.UseVisualStyleBackColor = false;
+            // 
             // pictureBox1
             // 
             this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -85,48 +115,18 @@
             this.btnPlay.TabIndex = 1;
             this.btnPlay.Text = "JUGAR";
             this.btnPlay.UseVisualStyleBackColor = false;
+            this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
             // 
-            // btnLeaderboards
-            // 
-            this.btnLeaderboards.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnLeaderboards.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnLeaderboards.BackColor = System.Drawing.Color.DarkSlateBlue;
-            this.btnLeaderboards.FlatAppearance.BorderSize = 0;
-            this.btnLeaderboards.Font = new System.Drawing.Font("ArcadeClassic", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLeaderboards.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnLeaderboards.Location = new System.Drawing.Point(245, 263);
-            this.btnLeaderboards.Name = "btnLeaderboards";
-            this.btnLeaderboards.Size = new System.Drawing.Size(240, 53);
-            this.btnLeaderboards.TabIndex = 2;
-            this.btnLeaderboards.Text = "LEADERBOARDS";
-            this.btnLeaderboards.UseVisualStyleBackColor = false;
-            // 
-            // btnGoOut
-            // 
-            this.btnGoOut.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnGoOut.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnGoOut.BackColor = System.Drawing.Color.DarkSlateBlue;
-            this.btnGoOut.FlatAppearance.BorderSize = 0;
-            this.btnGoOut.Font = new System.Drawing.Font("ArcadeClassic", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGoOut.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnGoOut.Location = new System.Drawing.Point(245, 379);
-            this.btnGoOut.Name = "btnGoOut";
-            this.btnGoOut.Size = new System.Drawing.Size(240, 53);
-            this.btnGoOut.TabIndex = 3;
-            this.btnGoOut.Text = "SALIR";
-            this.btnGoOut.UseVisualStyleBackColor = false;
-            // 
-            // UCMain
+            // MainControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Name = "UCMain";
+            this.Name = "MainControl";
             this.Size = new System.Drawing.Size(730, 464);
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
-            
 
         }
 

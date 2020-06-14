@@ -7,6 +7,8 @@ namespace ProyectoArkanoid.Vista
 {
     public partial class GameControls : UserControl
     {
+        int valorExtraWidth;
+        int valorExtraHeight;
         private CustomPictureBox[,] cpb;
         private PictureBox picBall;
         public GameControls()
@@ -51,8 +53,8 @@ namespace ProyectoArkanoid.Vista
 
             int pbHeight = (int)(Height * 0.4) / yAxis;
             int pbWidth = (int)(Width - (Width * 0.45) - (xAxis - 5)) / xAxis;
-            int valorExtraWidth = (int)(Width *0.45) / 2;
-            int valorExtraHeight = (int)(Height * 0.20) / 2;
+            valorExtraWidth = (int)(Width *0.45) / 2;
+            valorExtraHeight = (int)(Height * 0.20) / 2;
             cpb = new CustomPictureBox[yAxis, xAxis];
 
             for (int i = 0; i< yAxis; i++)
@@ -138,7 +140,7 @@ namespace ProyectoArkanoid.Vista
                 Application.Exit();
 
             //Si la pelota toca los bordes izq o der, rebota
-            if (picBall.Left < 0 || picBall.Right > Width)
+            if (picBall.Left < 0|| picBall.Right > Width )
             {
                 DatosJuego.dirX = -DatosJuego.dirX;
                 return;
@@ -157,7 +159,7 @@ namespace ProyectoArkanoid.Vista
                 {
                     //Cuando la pelota choca con un bloque, este se elimina y la pelota rebota
                     // y se mueve hacia el otro lado
-                    if (picBall.Bounds.IntersectsWith(cpb[i, j].Bounds))
+                    if ( cpb[i,j]!= null && picBall.Bounds.IntersectsWith(cpb[i, j].Bounds))
                     {
                         if(i == 0)
                             cpb[i, j].BackgroundImage = Image.FromFile("../../Resources/" + GenerateRandomNumber() + ".png");
@@ -165,6 +167,8 @@ namespace ProyectoArkanoid.Vista
                         cpb[i, j].Golpes--;
                         if (cpb[i, j].Golpes == 0)
                             Controls.Remove(cpb[i, j]);
+                            cpb[i, j]= null;
+                            
 
                         DatosJuego.dirY = -DatosJuego.dirY;
 
