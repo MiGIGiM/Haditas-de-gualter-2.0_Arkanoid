@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ProyectoArkanoid.Controladores;
 
@@ -53,10 +47,12 @@ namespace ProyectoArkanoid.Vista
         private void LoadTiles()
         {
             int xAxis = 10;
-            int yAxis = 7;
+            int yAxis = 6;
 
-            int pbHeight = (int)(Height * 0.3) / yAxis;
-            int pbWidth = (Width - (xAxis - 5))/ xAxis;
+            int pbHeight = (int)(Height * 0.4) / yAxis;
+            int pbWidth = (int)(Width - (Width * 0.45) - (xAxis - 5)) / xAxis;
+            int valorExtraWidth = (int)(Width *0.45) / 2;
+            int valorExtraHeight = (int)(Height * 0.20) / 2;
             cpb = new CustomPictureBox[yAxis, xAxis];
 
             for (int i = 0; i< yAxis; i++)
@@ -66,17 +62,24 @@ namespace ProyectoArkanoid.Vista
                     cpb[i, j] = new CustomPictureBox();
 
                     if (i == 0)
+                    {
                         cpb[i, j].Golpes = 2;
+                        cpb[i, j].BackgroundImage = Image.FromFile("../../Resources/0.png");
+                    }
                     else
+                    {
                         cpb[i, j].Golpes = 1;
+                        cpb[i, j].BackgroundImage = Image.FromFile("../../Resources/" + GenerateRandomNumber() + ".png");
+                    }
+
 
                     cpb[i, j].Height = pbHeight;
                     cpb[i, j].Width = pbWidth;
                     //Posicion de left y posicion de top
-                    cpb[i, j].Left = j * pbWidth;
-                    cpb[i, j].Top = i * pbHeight;
 
-                    cpb[i, j].BackgroundImage = Image.FromFile("../../Resources/" + GenerateRandomNumber() + ".png");
+                    cpb[i, j].Left = valorExtraWidth + (j * pbWidth);
+                    cpb[i, j].Top = valorExtraHeight + (i * pbHeight);
+
                     cpb[i, j].BackgroundImageLayout = ImageLayout.Stretch;
                     cpb[i, j].Tag = "tileTag";
                     Controls.Add(cpb[i, j]);
@@ -85,7 +88,7 @@ namespace ProyectoArkanoid.Vista
         }
         private int GenerateRandomNumber()
         {
-            return new Random().Next(1, 7);
+            return new Random().Next(1, 5);
         }
 
         private void GameControls_MouseMove(object sender, MouseEventArgs e)
@@ -142,13 +145,13 @@ namespace ProyectoArkanoid.Vista
             }
 
             //Rebotar la pelota cuando choca con la barra del jugador
-            if (picBall.Bounds.IntersectsWith(picPaddle.Bounds))
+            if (picBall.Bounds.IntersectsWith(picPaddle.Bounds) || picBall.Top < 0)
             {
                 DatosJuego.dirY = -DatosJuego.dirY;
             }
             //la variable i se disminuye ya que se esta iniciando desde la fila mas cercana a la pelota
             //esto se hace para hacer el menor numero de verificaciones posible
-            for (int i = 6; i >= 0; i--)
+            for (int i = 5; i >= 0; i--)
             {
                 for (int j = 0; j < 10; j++)
                 {
@@ -156,6 +159,9 @@ namespace ProyectoArkanoid.Vista
                     // y se mueve hacia el otro lado
                     if (picBall.Bounds.IntersectsWith(cpb[i, j].Bounds))
                     {
+                        if(i == 0)
+                            cpb[i, j].BackgroundImage = Image.FromFile("../../Resources/" + GenerateRandomNumber() + ".png");
+
                         cpb[i, j].Golpes--;
                         if (cpb[i, j].Golpes == 0)
                             Controls.Remove(cpb[i, j]);
