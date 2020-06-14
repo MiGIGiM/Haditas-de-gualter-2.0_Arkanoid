@@ -11,9 +11,11 @@ using ProyectoArkanoid.Controladores;
 
 namespace ProyectoArkanoid.Vista
 {
-
+    
     public partial class LoginControl : UserControl
     {
+        public delegate void EventLoginControl(object sender, EventArgs e);
+        public EventLoginControl OnClickButtonLogin;
         private User u;
         public LoginControl()
         {
@@ -45,11 +47,17 @@ namespace ProyectoArkanoid.Vista
                     {
                         ConnectionDB.ExecutenonQuery($"INSERT INTO PLAYER(nickname) VALUES('{tb_usuarios.Text}')");
                     }
+
+                    if (OnClickButtonLogin != null)
+                    {
+                        OnClickButtonLogin(this, e);
+                    }
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("Ha ocurrido un error");
                 }
+                
             }
         }
     }
