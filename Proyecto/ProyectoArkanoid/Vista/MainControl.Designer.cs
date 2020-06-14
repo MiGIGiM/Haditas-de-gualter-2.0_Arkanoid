@@ -74,6 +74,7 @@
             this.btnGoOut.TabIndex = 3;
             this.btnGoOut.Text = "SALIR";
             this.btnGoOut.UseVisualStyleBackColor = false;
+            this.btnGoOut.Click += new System.EventHandler(this.BtnGoOut_Click);
             // 
             // btnLeaderboards
             // 
@@ -115,7 +116,7 @@
             this.btnPlay.TabIndex = 1;
             this.btnPlay.Text = "JUGAR";
             this.btnPlay.UseVisualStyleBackColor = false;
-            this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
+            this.btnPlay.Click += new System.EventHandler(this.BtnPlay_Click);
             // 
             // MainControl
             // 

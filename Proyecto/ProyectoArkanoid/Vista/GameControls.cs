@@ -9,12 +9,20 @@ namespace ProyectoArkanoid.Vista
     {
         int valorExtraWidth;
         int valorExtraHeight;
+
         private CustomPictureBox[,] cpb;
         private PictureBox picBall;
+
+        private delegate void AccionesPelota();
+        private readonly AccionesPelota MovimientPelota;
+        public Action TerminarJuego;
+
         public GameControls()
         {
             InitializeComponent();
-            
+
+            MovimientPelota = BounceBall;
+            MovimientPelota += MoveBall;
         }
 
         private void GameControls_Load(object sender, EventArgs e)
@@ -42,10 +50,10 @@ namespace ProyectoArkanoid.Vista
 
             Controls.Add(picBall);
 
-
             LoadTiles();
             timer1.Start();
         }
+
         private void LoadTiles()
         {
             int xAxis = 10;
@@ -57,9 +65,9 @@ namespace ProyectoArkanoid.Vista
             valorExtraHeight = (int)(Height * 0.20) / 2;
             cpb = new CustomPictureBox[yAxis, xAxis];
 
-            for (int i = 0; i< yAxis; i++)
+            for (int i = 0; i < yAxis; i++)
             {
-                for(int j = 0; j< xAxis; j++)
+                for(int j = 0; j < xAxis; j++)
                 {
                     cpb[i, j] = new CustomPictureBox();
 
@@ -74,11 +82,10 @@ namespace ProyectoArkanoid.Vista
                         cpb[i, j].BackgroundImage = Image.FromFile("../../Resources/" + GenerateRandomNumber() + ".png");
                     }
 
-
                     cpb[i, j].Height = pbHeight;
                     cpb[i, j].Width = pbWidth;
-                    //Posicion de left y posicion de top
 
+                    //Posicion de left y posicion de top
                     cpb[i, j].Left = valorExtraWidth + (j * pbWidth);
                     cpb[i, j].Top = valorExtraHeight + (i * pbHeight);
 
@@ -88,6 +95,7 @@ namespace ProyectoArkanoid.Vista
                 }
             }
         }
+
         private int GenerateRandomNumber()
         {
             return new Random().Next(1, 5);
@@ -102,15 +110,12 @@ namespace ProyectoArkanoid.Vista
                     picPaddle.Left = e.X;
                     picBall.Left = picPaddle.Left + (picPaddle.Width / 2) + (picBall.Width / 2);
                 }
-
-
             }
             else
             {
                 if (e.X < (Width - picPaddle.Width))
                     picPaddle.Left = e.X;
             }
-
         }
 
         private void GameControls_KeyDown(object sender, KeyEventArgs e)
@@ -120,24 +125,24 @@ namespace ProyectoArkanoid.Vista
                 DatosJuego.juegoIniciado = true;
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private void Timer1_Click(object sender, EventArgs e)
         {
             //Si el juego no ha iniciado, no se hace nada
             if (!DatosJuego.juegoIniciado)
                 return;
-            //Por otro lado, si el juego ya empezo, se aumentan los valores de left y top con
-            //las variables establecidas en la clase estatica para que la pelota se mueva.
-            picBall.Left += DatosJuego.dirX;
-            picBall.Top += DatosJuego.dirY;
-            
-            RebotarPelota();
+
+            // Si por alguna razon esta nulo, no se invocara, de lo contrario se invocara
+            MovimientPelota?.Invoke();           
         }
 
-        private void RebotarPelota()
+        private void BounceBall()
         {
             //Si la pelota toca la parte inferior del control, el usuario ha perdido
             if (picBall.Bottom > Height)
-                Application.Exit();
+            {
+                timer1.Stop();
+                TerminarJuego?.Invoke();
+            }
 
             //Si la pelota toca los bordes izq o der, rebota
             if (picBall.Left < 0|| picBall.Right > Width )
@@ -159,24 +164,31 @@ namespace ProyectoArkanoid.Vista
                 {
                     //Cuando la pelota choca con un bloque, este se elimina y la pelota rebota
                     // y se mueve hacia el otro lado
-                    if ( cpb[i,j]!= null && picBall.Bounds.IntersectsWith(cpb[i, j].Bounds))
+                    if (cpb[i,j] != null && picBall.Bounds.IntersectsWith(cpb[i, j].Bounds))
                     {
                         if(i == 0)
                             cpb[i, j].BackgroundImage = Image.FromFile("../../Resources/" + GenerateRandomNumber() + ".png");
 
                         cpb[i, j].Golpes--;
-                        if (cpb[i, j].Golpes == 0)
-                            Controls.Remove(cpb[i, j]);
-                            cpb[i, j]= null;
-                            
 
+                        if (cpb[i, j].Golpes == 0)
+                        {
+                            Controls.Remove(cpb[i, j]);
+                            cpb[i, j] = null;
+                        }
+                            
                         DatosJuego.dirY = -DatosJuego.dirY;
 
                         return;
-
                     }
                 }
             }
+        }
+
+        private void MoveBall()
+        {
+            picBall.Left += DatosJuego.dirX;
+            picBall.Top += DatosJuego.dirY;
         }
     }
 }

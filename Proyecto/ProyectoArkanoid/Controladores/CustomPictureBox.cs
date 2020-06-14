@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace ProyectoArkanoid.Controladores
 {
@@ -12,6 +7,5 @@ namespace ProyectoArkanoid.Controladores
         public int Golpes { get; set; }
 
         public CustomPictureBox() : base() { }
-    }
-    
+    }  
 }

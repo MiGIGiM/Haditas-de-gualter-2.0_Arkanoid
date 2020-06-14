@@ -175,9 +175,6 @@
     <None Include="Resources\Alien1.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Vida .png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Fondo_03.png" />
   </ItemGroup>
   <ItemGroup>
@@ -201,7 +198,6 @@
   <ItemGroup>
     <Content Include="Resources\0.png" />
     <Content Include="Resources\5.png" />
-    <Content Include="Resources\6.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\4.png" />

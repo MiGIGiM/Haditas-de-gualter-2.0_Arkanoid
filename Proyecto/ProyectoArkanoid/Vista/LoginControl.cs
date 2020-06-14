@@ -1,28 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ProyectoArkanoid.Controladores;
 
 namespace ProyectoArkanoid.Vista
 {
-    
     public partial class LoginControl : UserControl
     {
         public delegate void EventLoginControl(object sender, EventArgs e);
         public EventLoginControl OnClickButtonLogin;
         private User u;
+
         public LoginControl()
         {
             InitializeComponent();
         }
 
-        private void btnLogin_Click(object sender, EventArgs e)
+        private void BtnLogin_Click(object sender, EventArgs e)
         {
             if (tb_usuarios.Text.Equals(""))
             {
@@ -41,23 +34,19 @@ namespace ProyectoArkanoid.Vista
 
                         u = new User(dataUsuario[0].ToString());
 
-                        MessageBox.Show("Bienvenido");
+                        MessageBox.Show("Bienvenido " + u.nickname, "Arkanoid", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
                         ConnectionDB.ExecutenonQuery($"INSERT INTO PLAYER(nickname) VALUES('{tb_usuarios.Text}')");
                     }
 
-                    if (OnClickButtonLogin != null)
-                    {
-                        OnClickButtonLogin(this, e);
-                    }
+                    OnClickButtonLogin?.Invoke(this, e);
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("Ha ocurrido un error");
-                }
-                
+                }                
             }
         }
     }
