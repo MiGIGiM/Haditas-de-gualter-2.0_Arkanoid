@@ -22,6 +22,10 @@ namespace ProyectoArkanoid.Vista
 
         private void btnPlay_Click(object sender, EventArgs e)
         {
+            if(OnClickButtonPlay != null)
+            {
+                OnClickButtonPlay(this, e);
+            }
 
         }
     }
