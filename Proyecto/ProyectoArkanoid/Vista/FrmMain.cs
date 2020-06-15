@@ -55,15 +55,12 @@ namespace ProyectoArkanoid.Vista
             lControl.OnClickButtonLogin += OnClickToLoginControl;
 
             gControl.TerminarJuego = () =>
-            {
-                gControl = null;
-                gControl = new GameControls();
-
+            {           
                 MessageBox.Show("Has perdido :(", "Arkanoid", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
                 gControl.Hide();
+                lControl.Hide();
 
-                Controls.Add(mControl);
                 mControl.Show();
             };
         }
