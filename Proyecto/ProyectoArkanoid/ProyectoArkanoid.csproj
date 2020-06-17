@@ -81,7 +81,7 @@
     <Compile Include="Controladores\CustomPictureBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controladores\DatosJuego.cs" />
+    <Compile Include="Controladores\GameData.cs" />
     <Compile Include="Controladores\TopTenController.cs" />
     <Compile Include="Modelo\Score.cs" />
     <Compile Include="Modelo\User.cs" />
@@ -198,6 +198,7 @@
   <ItemGroup>
     <Content Include="Resources\0.png" />
     <Content Include="Resources\5.png" />
+    <None Include="Resources\VIDA3.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\4.png" />

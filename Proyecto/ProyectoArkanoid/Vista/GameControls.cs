@@ -11,28 +11,36 @@ namespace ProyectoArkanoid.Vista
         int valorExtraHeight;
 
         private CustomPictureBox[,] cpb;
+        private Panel scorePanel;
+        private Label scoreLabel;
         private PictureBox picBall;
 
+        private PictureBox[] hearts;
+
         private delegate void AccionesPelota();
-        private readonly AccionesPelota MovimientPelota;
-        public Action TerminarJuego;
+        private readonly AccionesPelota MovingBall;
+        public Action EndGame;
 
         public GameControls()
         {
             InitializeComponent();
 
-            MovimientPelota = BounceBall;
-            MovimientPelota += MoveBall;
+            MovingBall = BounceBall;
+            MovingBall += MoveBall;
         }
 
         private void GameControls_Load(object sender, EventArgs e)
         {
+            // Se invoca el metodo que contiene el panel con la vida y los puntajes
+            ScorePanel();
+
             // Se carga al picture box la imagen que se usara como la barra del juego
             picPaddle.BackgroundImage = Image.FromFile("../../Resources/paddle.png");
             picPaddle.BackgroundImageLayout = ImageLayout.Stretch;
 
             // Se ajusta la posicion de la barra para que se vea de manera adecuada 
             picPaddle.Top = ((Height - picPaddle.Height) - 90);
+
             // Se ajusta la posicion de la barra para que inicie al centro de la pantalla 
             picPaddle.Left = (Width / 2) - (picPaddle.Width / 2);
 
@@ -45,13 +53,13 @@ namespace ProyectoArkanoid.Vista
             //Definir la posicion para que la pelota empiece encima de la barra
             picBall.Top = picPaddle.Top - picBall.Height;
             picBall.Left = picPaddle.Left + (picPaddle.Width / 2) - (picBall.Width / 2);
+
             //Se pone el color de fondo del picturebox a transparente
             picBall.BackColor = Color.Transparent;
 
             Controls.Add(picBall);
 
             LoadTiles();
-            timer1.Start();
         }
 
         private void LoadTiles()
@@ -87,7 +95,7 @@ namespace ProyectoArkanoid.Vista
 
                     //Posicion de left y posicion de top
                     cpb[i, j].Left = valorExtraWidth + (j * pbWidth);
-                    cpb[i, j].Top = valorExtraHeight + (i * pbHeight);
+                    cpb[i, j].Top = valorExtraHeight + (i * pbHeight) + scorePanel.Height;
 
                     cpb[i, j].BackgroundImageLayout = ImageLayout.Stretch;
                     cpb[i, j].Tag = "tileTag";
@@ -103,7 +111,7 @@ namespace ProyectoArkanoid.Vista
 
         private void GameControls_MouseMove(object sender, MouseEventArgs e)
         {
-            if (!DatosJuego.juegoIniciado)
+            if (!GameData.GameStarted)
             {
                 if (e.X < (Width - picPaddle.Width))
                 {
@@ -122,39 +130,57 @@ namespace ProyectoArkanoid.Vista
         {
             //Al presionar la barra espaciadora, el juego comienza
             if (e.KeyCode == Keys.Space)
-                DatosJuego.juegoIniciado = true;
+            {
+                GameData.GameStarted = true;
+                timer1.Start();
+            }
         }
 
         private void Timer1_Click(object sender, EventArgs e)
         {
             //Si el juego no ha iniciado, no se hace nada
-            if (!DatosJuego.juegoIniciado)
+            if (!GameData.GameStarted)
                 return;
 
+            GameData.performedTicks += 0.01;
+
             // Si por alguna razon esta nulo, no se invocara, de lo contrario se invocara
-            MovimientPelota?.Invoke();           
+            MovingBall?.Invoke();           
         }
 
         private void BounceBall()
         {
+            if (picBall.Top < 0)
+                GameData.dirY = -GameData.dirY;
+
             //Si la pelota toca la parte inferior del control, el usuario ha perdido
             if (picBall.Bottom > Height)
             {
+                GameData.lifes--;
+                GameData.GameStarted = false;
                 timer1.Stop();
-                TerminarJuego?.Invoke();
+
+                RepositionElements();
+                UpdateElements();
+
+                if(GameData.lifes == 0)
+                {
+                    timer1.Stop();
+                    EndGame?.Invoke();
+                }
             }
 
             //Si la pelota toca los bordes izq o der, rebota
-            if (picBall.Left < 0|| picBall.Right > Width )
+            if (picBall.Left < 0 || picBall.Right > Width )
             {
-                DatosJuego.dirX = -DatosJuego.dirX;
+                GameData.dirX = -GameData.dirX;
                 return;
             }
 
             //Rebotar la pelota cuando choca con la barra del jugador
             if (picBall.Bounds.IntersectsWith(picPaddle.Bounds) || picBall.Top < 0)
             {
-                DatosJuego.dirY = -DatosJuego.dirY;
+                GameData.dirY = -GameData.dirY;
             }
             //la variable i se disminuye ya que se esta iniciando desde la fila mas cercana a la pelota
             //esto se hace para hacer el menor numero de verificaciones posible
@@ -169,6 +195,9 @@ namespace ProyectoArkanoid.Vista
                         if(i == 0)
                             cpb[i, j].BackgroundImage = Image.FromFile("../../Resources/" + GenerateRandomNumber() + ".png");
 
+                        // Actuaiza los puntos en base a los golpes y el tiempo
+                        GameData.score += (int)(cpb[i, j].Golpes * GameData.performedTicks);
+
                         cpb[i, j].Golpes--;
 
                         if (cpb[i, j].Golpes == 0)
@@ -176,8 +205,10 @@ namespace ProyectoArkanoid.Vista
                             Controls.Remove(cpb[i, j]);
                             cpb[i, j] = null;
                         }
-                            
-                        DatosJuego.dirY = -DatosJuego.dirY;
+
+                        GameData.dirY = -GameData.dirY;
+
+                        scoreLabel.Text = GameData.score.ToString();
 
                         return;
                     }
@@ -187,8 +218,85 @@ namespace ProyectoArkanoid.Vista
 
         private void MoveBall()
         {
-            picBall.Left += DatosJuego.dirX;
-            picBall.Top += DatosJuego.dirY;
+            picBall.Left += GameData.dirX;
+            picBall.Top += GameData.dirY;
+        }
+
+        private void ScorePanel()
+        {
+            // Instanciar panel
+            scorePanel = new Panel();
+
+            // Instanciar elementos del panel
+            scorePanel.Width = Width;
+            scorePanel.Height = (int)(Height * 0.08);
+
+            scorePanel.Top = scorePanel.Left = 0;
+
+            scorePanel.BackColor = Color.FromArgb(44, 9, 64);
+
+            // Trabajando con los corazones   
+
+            hearts = new PictureBox[GameData.lifes];
+
+            for(int i = 0; i < GameData.lifes; i++)
+            {
+                // Instanciar picture box
+                hearts[i] = new PictureBox();
+
+                hearts[i].Height = hearts[i].Width = scorePanel.Height;
+
+                hearts[i].BackgroundImage = Image.FromFile("../../Resources/VIDA3.png");
+                hearts[i].BackgroundImageLayout = ImageLayout.Stretch;
+
+                hearts[i].Top = 0;
+
+                if (i == 0)
+                    hearts[i].Left = 20;
+                else
+                    hearts[i].Left = hearts[i - 1].Right + 5;
+            }
+
+            scoreLabel = new Label();
+
+            // Setear elementos de los labels
+            scoreLabel.ForeColor = Color.White;
+            scoreLabel.Text = GameData.score.ToString();
+
+            // Agregando la fuente al label y centrando el texto
+            scoreLabel.Font = new Font("ArcadeClassic", 26F);
+            scoreLabel.TextAlign = ContentAlignment.MiddleCenter;
+
+            scoreLabel.Left = Width - 100;
+            scoreLabel.Height = scorePanel.Height;
+
+            scorePanel.Controls.Add(scoreLabel);
+
+            // Poblando los corazones
+            foreach(var pb in hearts)
+            {
+                scorePanel.Controls.Add(pb);
+            }
+ 
+            Controls.Add(scorePanel);
+        }
+
+        private void RepositionElements()
+        {
+            // Se ajusta la posicion de la barra para que inicie al centro de la pantalla 
+            picPaddle.Left = (Width / 2) - (picPaddle.Width / 2);
+
+            // Definir la posicion para que la pelota empiece encima de la barra
+            picBall.Top = picPaddle.Top - picBall.Height;
+            picBall.Left = picPaddle.Left + (picPaddle.Width / 2) - (picBall.Width / 2);
+        }
+
+        private void UpdateElements()
+        {
+            // Actualiza las vidas 
+            scorePanel.Controls.Remove(hearts[GameData.lifes]);
+            hearts[GameData.lifes] = null; 
+
         }
     }
 }

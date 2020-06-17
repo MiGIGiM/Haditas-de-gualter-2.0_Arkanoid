@@ -54,7 +54,7 @@ namespace ProyectoArkanoid.Vista
             mControl.OnClickButtonPlay += OnClickToMainControl;
             lControl.OnClickButtonLogin += OnClickToLoginControl;
 
-            gControl.TerminarJuego = () =>
+            gControl.EndGame = () =>
             {           
                 MessageBox.Show("Has perdido :(", "Arkanoid", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
