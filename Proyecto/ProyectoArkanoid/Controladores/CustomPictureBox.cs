@@ -4,7 +4,7 @@ namespace ProyectoArkanoid.Controladores
 {
     public class CustomPictureBox : PictureBox
     {
-        public int Golpes { get; set; }
+        public int Hits { get; set; }
 
         public CustomPictureBox() : base() { }
     }  

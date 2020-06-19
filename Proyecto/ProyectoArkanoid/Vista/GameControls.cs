@@ -28,6 +28,15 @@ namespace ProyectoArkanoid.Vista
             MovingBall = BounceBall;
             MovingBall += MoveBall;
         }
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams handleParam = base.CreateParams;
+                handleParam.ExStyle |= 0x02000000;   // WS_EX_COMPOSITED       
+                return handleParam;
+            }
+        }
 
         private void GameControls_Load(object sender, EventArgs e)
         {
@@ -71,6 +80,7 @@ namespace ProyectoArkanoid.Vista
             int pbWidth = (int)(Width - (Width * 0.45) - (xAxis - 5)) / xAxis;
             valorExtraWidth = (int)(Width *0.45) / 2;
             valorExtraHeight = (int)(Height * 0.20) / 2;
+
             cpb = new CustomPictureBox[yAxis, xAxis];
 
             for (int i = 0; i < yAxis; i++)
@@ -81,12 +91,12 @@ namespace ProyectoArkanoid.Vista
 
                     if (i == 0)
                     {
-                        cpb[i, j].Golpes = 2;
+                        cpb[i, j].Hits = 2;
                         cpb[i, j].BackgroundImage = Image.FromFile("../../Resources/0.png");
                     }
                     else
                     {
-                        cpb[i, j].Golpes = 1;
+                        cpb[i, j].Hits = 1;
                         cpb[i, j].BackgroundImage = Image.FromFile("../../Resources/" + GenerateRandomNumber() + ".png");
                     }
 
@@ -99,6 +109,7 @@ namespace ProyectoArkanoid.Vista
 
                     cpb[i, j].BackgroundImageLayout = ImageLayout.Stretch;
                     cpb[i, j].Tag = "tileTag";
+
                     Controls.Add(cpb[i, j]);
                 }
             }
@@ -150,7 +161,7 @@ namespace ProyectoArkanoid.Vista
 
         private void BounceBall()
         {
-            if (picBall.Top < 0)
+            if (picBall.Top < scorePanel.Height)
                 GameData.dirY = -GameData.dirY;
 
             //Si la pelota toca la parte inferior del control, el usuario ha perdido
@@ -196,11 +207,11 @@ namespace ProyectoArkanoid.Vista
                             cpb[i, j].BackgroundImage = Image.FromFile("../../Resources/" + GenerateRandomNumber() + ".png");
 
                         // Actuaiza los puntos en base a los golpes y el tiempo
-                        GameData.score += (int)(cpb[i, j].Golpes * GameData.performedTicks);
+                        GameData.score += (int)(cpb[i, j].Hits * GameData.performedTicks);
 
-                        cpb[i, j].Golpes--;
+                        cpb[i, j].Hits--;
 
-                        if (cpb[i, j].Golpes == 0)
+                        if (cpb[i, j].Hits == 0)
                         {
                             Controls.Remove(cpb[i, j]);
                             cpb[i, j] = null;
@@ -257,18 +268,19 @@ namespace ProyectoArkanoid.Vista
                     hearts[i].Left = hearts[i - 1].Right + 5;
             }
 
-            scoreLabel = new Label();
+            scoreLabel = new Label
+            {
+                // Setear elementos de los labels
+                ForeColor = Color.White,
+                Text = GameData.score.ToString(),
 
-            // Setear elementos de los labels
-            scoreLabel.ForeColor = Color.White;
-            scoreLabel.Text = GameData.score.ToString();
+                // Agregando la fuente al label y centrando el texto
+                Font = new Font("ArcadeClassic", 26F),
+                TextAlign = ContentAlignment.MiddleCenter,
 
-            // Agregando la fuente al label y centrando el texto
-            scoreLabel.Font = new Font("ArcadeClassic", 26F);
-            scoreLabel.TextAlign = ContentAlignment.MiddleCenter;
-
-            scoreLabel.Left = Width - 100;
-            scoreLabel.Height = scorePanel.Height;
+                Left = Width - 100,
+                Height = scorePanel.Height
+            };
 
             scorePanel.Controls.Add(scoreLabel);
 

@@ -83,7 +83,6 @@
     </Compile>
     <Compile Include="Controladores\GameData.cs" />
     <Compile Include="Controladores\TopTenController.cs" />
-    <Compile Include="Modelo\Score.cs" />
     <Compile Include="Modelo\User.cs" />
     <Compile Include="Vista\FrmTopTen.cs">
       <SubType>Form</SubType>
@@ -198,6 +197,9 @@
   <ItemGroup>
     <Content Include="Resources\0.png" />
     <Content Include="Resources\5.png" />
+    <None Include="Resources\alien7.png" />
+    <None Include="Resources\alien6.png" />
+    <None Include="Resources\alien4.png" />
     <None Include="Resources\VIDA3.png" />
   </ItemGroup>
   <ItemGroup>

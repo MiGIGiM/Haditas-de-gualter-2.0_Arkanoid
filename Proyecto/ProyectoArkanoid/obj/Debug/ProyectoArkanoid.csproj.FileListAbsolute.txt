@@ -90,7 +90,6 @@ C:\Users\irene\Documents\Workspaces\POO\Haditas-de-gualter-2.0_Arkanoid\Proyecto
 C:\Users\irene\Documents\Workspaces\POO\Haditas-de-gualter-2.0_Arkanoid\Proyecto\ProyectoArkanoid\bin\Debug\System.Text.Json.xml
 C:\Users\irene\Documents\Workspaces\POO\Haditas-de-gualter-2.0_Arkanoid\Proyecto\ProyectoArkanoid\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Users\irene\Documents\Workspaces\POO\Haditas-de-gualter-2.0_Arkanoid\Proyecto\ProyectoArkanoid\bin\Debug\System.ValueTuple.xml
-C:\Users\irene\Documents\Workspaces\POO\Haditas-de-gualter-2.0_Arkanoid\Proyecto\ProyectoArkanoid\obj\Debug\ProyectoArkanoid.csprojAssemblyReference.cache
 C:\Users\irene\Documents\Workspaces\POO\Haditas-de-gualter-2.0_Arkanoid\Proyecto\ProyectoArkanoid\obj\Debug\ProyectoArkanoid.Vista.FrmTopTen.resources
 C:\Users\irene\Documents\Workspaces\POO\Haditas-de-gualter-2.0_Arkanoid\Proyecto\ProyectoArkanoid\obj\Debug\ProyectoArkanoid.Properties.Resources.resources
 C:\Users\irene\Documents\Workspaces\POO\Haditas-de-gualter-2.0_Arkanoid\Proyecto\ProyectoArkanoid\obj\Debug\ProyectoArkanoid.Vista.FrmMain.resources
@@ -106,3 +105,4 @@ C:\Users\irene\Documents\Workspaces\POO\Haditas-de-gualter-2.0_Arkanoid\Proyecto
 C:\Users\aleja\Desktop\Haditas-de-gualter-2.0_Arkanoid\Proyecto\ProyectoArkanoid\obj\Debug\ProyectoArkanoid.Vista.FrmTopTen.resources
 C:\Users\aleja\Desktop\Haditas-de-gualter-2.0_Arkanoid\Proyecto\ProyectoArkanoid\obj\Debug\ProyectoArkanoid.Vista.GameControls.resources
 C:\Users\fmrod\OneDrive\Documentos\GitHub\Haditas-de-gualter-2.0_Arkanoid\Proyecto\ProyectoArkanoid\obj\Debug\ProyectoArkanoid.Vista.GameControls.resources
+C:\Users\irene\Documents\Workspaces\POO\Haditas-de-gualter-2.0_Arkanoid\Proyecto\ProyectoArkanoid\obj\Debug\ProyectoArkanoid.csprojAssemblyReference.cache

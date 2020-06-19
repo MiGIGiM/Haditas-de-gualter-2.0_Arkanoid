@@ -7,6 +7,7 @@ namespace ProyectoArkanoid.Vista
     { 
         // Conectar el user al frmMain por medio de un evento personalizado
         public delegate void EventMainControl(object sender, EventArgs e);
+        public Action hideForm, showForm;
         public EventMainControl OnClickButtonPlay;
 
         public MainControl()
@@ -27,5 +28,19 @@ namespace ProyectoArkanoid.Vista
                 Application.Exit();
             }            
         }
+
+        private void BtnLeaderboards_Click(object sender, EventArgs e)
+        {
+            FrmTopTen ft = new FrmTopTen();
+
+            ft.CloseAction = () =>
+            {
+                showForm?.Invoke();
+            };
+
+            hideForm?.Invoke();
+            ft.Show();
+        }
     }
 }
+

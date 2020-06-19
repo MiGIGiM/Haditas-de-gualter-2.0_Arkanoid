@@ -45,7 +45,7 @@
             // 
             // timer1
             // 
-            this.timer1.Interval = 25;
+            this.timer1.Interval = 30;
             this.timer1.Tick += new System.EventHandler(this.Timer1_Click);
             // 
             // GameControls

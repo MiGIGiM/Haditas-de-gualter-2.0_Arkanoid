@@ -14,10 +14,10 @@ namespace ProyectoArkanoid.Controladores
             try
             {
                 // Consulta para obtener los primeros 10 puntajes 
-                tableScore = ConnectionDB.ExecuteQuery("SELECT * " +
-                    "FROM SCORE " +
-                    "ORDER BY score DESC " +
-                    "FETCH FIRST 10 ROWS ONLY ");
+                tableScore = ConnectionDB.ExecuteQuery("SELECT sc.nickname, sc.score " +
+                    "FROM SCORE sc " +
+                    "ORDER BY sc.score DESC " +
+                    "LIMIT 10 ");
             }
             catch(Exception e)
             {
@@ -25,6 +25,12 @@ namespace ProyectoArkanoid.Controladores
             }
 
             return tableScore;
+        }
+
+        public static void CreateNewScore(int idScore, int score)
+        {
+            ConnectionDB.ExecutenonQuery("INSERT INTO SCORE(idScore, score) VALUES" +
+                $"({idScore}, {score})");
         }
     }
 }

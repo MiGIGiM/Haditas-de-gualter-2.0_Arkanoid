@@ -63,6 +63,16 @@ namespace ProyectoArkanoid.Vista
 
                 mControl.Show();
             };
+
+            mControl.hideForm = () =>
+            {
+                Hide();
+            };
+
+            mControl.showForm = () =>
+            {
+                Show();
+            };
         }
         
         private void OnClickToMainControl(object sender, EventArgs e)

@@ -123,9 +123,39 @@ namespace ProyectoArkanoid.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap alien4 {
+            get {
+                object obj = ResourceManager.GetObject("alien4", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap alien5 {
             get {
                 object obj = ResourceManager.GetObject("alien5", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap alien6 {
+            get {
+                object obj = ResourceManager.GetObject("alien6", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap alien7 {
+            get {
+                object obj = ResourceManager.GetObject("alien7", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

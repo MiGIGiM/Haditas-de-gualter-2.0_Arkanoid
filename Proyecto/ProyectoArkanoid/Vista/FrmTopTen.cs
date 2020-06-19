@@ -1,18 +1,27 @@
-﻿using System.Windows.Forms;
+﻿using ProyectoArkanoid.Controladores;
+using System.Linq.Expressions;
+using System.Windows.Forms;
 
 namespace ProyectoArkanoid.Vista
 {
     public partial class FrmTopTen : Form
     {
+        public delegate void OnCloseWindow();
+        public OnCloseWindow CloseAction;
+
         public FrmTopTen()
         {
             InitializeComponent();
         }
 
-        // Terminar la ejecucion del programa 
-        private void FrmTopTen_FormClosing(object sender, FormClosingEventArgs e)
+        private void FrmTopTen_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Application.Exit();
+            CloseAction?.Invoke();
+        }
+
+        private void FrmTopTen_Load(object sender, System.EventArgs e)
+        {
+            dataGridView1.DataSource = TopTenController.GetScoreTable();
         }
     }
 }

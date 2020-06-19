@@ -90,6 +90,7 @@
             this.btnLeaderboards.TabIndex = 2;
             this.btnLeaderboards.Text = "LEADERBOARDS";
             this.btnLeaderboards.UseVisualStyleBackColor = false;
+            this.btnLeaderboards.Click += new System.EventHandler(this.BtnLeaderboards_Click);
             // 
             // pictureBox1
             // 
