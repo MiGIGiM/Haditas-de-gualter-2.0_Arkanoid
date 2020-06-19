@@ -82,7 +82,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controladores\GameData.cs" />
-    <Compile Include="Controladores\TopTenController.cs" />
+    <Compile Include="Controladores\PlayerController.cs" />
     <Compile Include="Modelo\User.cs" />
     <Compile Include="Vista\FrmTopTen.cs">
       <SubType>Form</SubType>

@@ -14,12 +14,13 @@ namespace ProyectoArkanoid.Vista
         private Panel scorePanel;
         private Label scoreLabel;
         private PictureBox picBall;
-
         private PictureBox[] hearts;
+
+        private int remainingPb = 0;
 
         private delegate void AccionesPelota();
         private readonly AccionesPelota MovingBall;
-        public Action EndGame;
+        public Action EndGame, WinningGame;
 
         public GameControls()
         {
@@ -73,8 +74,8 @@ namespace ProyectoArkanoid.Vista
 
         private void LoadTiles()
         {
-            int xAxis = 10;
-            int yAxis = 6;
+            int xAxis = 10, yAxis = 6;
+            remainingPb = xAxis * yAxis;
 
             int pbHeight = (int)(Height * 0.4) / yAxis;
             int pbWidth = (int)(Width - (Width * 0.45) - (xAxis - 5)) / xAxis;
@@ -193,6 +194,7 @@ namespace ProyectoArkanoid.Vista
             {
                 GameData.dirY = -GameData.dirY;
             }
+
             //la variable i se disminuye ya que se esta iniciando desde la fila mas cercana a la pelota
             //esto se hace para hacer el menor numero de verificaciones posible
             for (int i = 5; i >= 0; i--)
@@ -215,11 +217,22 @@ namespace ProyectoArkanoid.Vista
                         {
                             Controls.Remove(cpb[i, j]);
                             cpb[i, j] = null;
+
+                            remainingPb--;
                         }
 
                         GameData.dirY = -GameData.dirY;
 
                         scoreLabel.Text = GameData.score.ToString();
+
+                        if(remainingPb == 0)
+                        {
+                            timer1.Stop();
+
+                            RepositionElements();
+
+                            WinningGame?.Invoke();
+                        }
 
                         return;
                     }

@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace ProyectoArkanoid.Controladores
 {
-    public static class TopTenController
+    public static class PlayerController
     {
         // Metodo que devuelve en forma de tabla el puntaje de usuario
         public static DataTable GetScoreTable()
@@ -27,10 +27,10 @@ namespace ProyectoArkanoid.Controladores
             return tableScore;
         }
 
-        public static void CreateNewScore(int idScore, int score)
+        public static void CreateNewScore(string nickname, int score)
         {
-            ConnectionDB.ExecutenonQuery("INSERT INTO SCORE(idScore, score) VALUES" +
-                $"({idScore}, {score})");
+            ConnectionDB.ExecutenonQuery("INSERT INTO SCORE(nickname, score) VALUES" +
+                $"('{nickname}', {score})");
         }
     }
 }

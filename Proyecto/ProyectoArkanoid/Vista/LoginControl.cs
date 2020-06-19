@@ -8,7 +8,7 @@ namespace ProyectoArkanoid.Vista
     {
         public delegate void EventLoginControl(object sender, EventArgs e);
         public EventLoginControl OnClickButtonLogin;
-        private User u;
+        private User currentPlayer;
 
         public LoginControl()
         {
@@ -32,9 +32,9 @@ namespace ProyectoArkanoid.Vista
                     {
                         var dataUsuario = dt.Rows[0];
 
-                        u = new User(dataUsuario[0].ToString());
+                        currentPlayer = new User(dataUsuario[0].ToString());
 
-                        MessageBox.Show("Bienvenido " + u.nickname, "Arkanoid", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Bienvenido " + currentPlayer.nickname, "Arkanoid", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
@@ -42,12 +42,15 @@ namespace ProyectoArkanoid.Vista
                     }
 
                     OnClickButtonLogin?.Invoke(this, e);
+
+                    GameData.newPlayer.nickname = tb_usuarios.Text;
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("Ha ocurrido un error");
                 }                
             }
+
         }
     }
 }

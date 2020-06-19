@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProyectoArkanoid.Controladores;
+using System;
 using System.Windows.Forms;
 
 namespace ProyectoArkanoid.Vista
@@ -8,6 +9,7 @@ namespace ProyectoArkanoid.Vista
         private MainControl mControl;
         private GameControls gControl;
         private LoginControl lControl;
+        private User u;
 
         public FrmMain()
         {
@@ -57,6 +59,28 @@ namespace ProyectoArkanoid.Vista
             gControl.EndGame = () =>
             {           
                 MessageBox.Show("Has perdido :(", "Arkanoid", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+                gControl.Hide();
+                lControl.Hide();
+
+                mControl.Show();
+            };
+
+            mControl.hideForm = () =>
+            {
+                Hide();
+            };
+
+            mControl.showForm = () =>
+            {
+                Show();
+            };
+
+            gControl.WinningGame = () =>
+            {
+                PlayerController.CreateNewScore(GameData.newPlayer.nickname, GameData.score);
+
+                MessageBox.Show("Has ganado! :)", "Arkanoid", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
                 gControl.Hide();
                 lControl.Hide();
