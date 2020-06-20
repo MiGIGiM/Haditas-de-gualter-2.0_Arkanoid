@@ -81,8 +81,13 @@
     <Compile Include="Controladores\CustomPictureBox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controladores\EmptyNicknameException.cs" />
+    <Compile Include="Controladores\ExceededMaxCharacterException.cs" />
     <Compile Include="Controladores\GameData.cs" />
+    <Compile Include="Controladores\NoRemainingLifesExeption.cs" />
+    <Compile Include="Controladores\OutOfBoundsException.cs" />
     <Compile Include="Controladores\PlayerController.cs" />
+    <Compile Include="Controladores\WrongKeyPressedException.cs" />
     <Compile Include="Modelo\User.cs" />
     <Compile Include="Vista\FrmTopTen.cs">
       <SubType>Form</SubType>
@@ -116,6 +121,7 @@
     <Compile Include="Vista\MainControl.Designer.cs">
       <DependentUpon>MainControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vista\WrongKeyPressedException.cs" />
     <EmbeddedResource Include="Vista\FrmTopTen.resx">
       <DependentUpon>FrmTopTen.cs</DependentUpon>
     </EmbeddedResource>

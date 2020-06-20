@@ -9,7 +9,6 @@ namespace ProyectoArkanoid.Vista
         private MainControl mControl;
         private GameControls gControl;
         private LoginControl lControl;
-        private User u;
 
         public FrmMain()
         {
@@ -21,7 +20,7 @@ namespace ProyectoArkanoid.Vista
             WindowState = FormWindowState.Maximized;
             
             mControl = new MainControl();
-            gControl = new GameControls();
+            
             lControl = new LoginControl();
         }
         
@@ -31,12 +30,7 @@ namespace ProyectoArkanoid.Vista
             mControl.Dock = DockStyle.Fill;
             mControl.Width = Width;
             mControl.Height = Height;
-
-            //Propiedades para GameControls
-            gControl.Dock = DockStyle.Fill;
-            gControl.Width = Width;
-            gControl.Height = Height;
-
+         
             //Propiedades para LoginControl
             lControl.Dock = DockStyle.Fill;
             lControl.Width = Width;
@@ -46,25 +40,11 @@ namespace ProyectoArkanoid.Vista
             Controls.Add(lControl);
             lControl.Hide();
 
-            //Se agrega el Game, pero se oculta esperando el evento click
-            Controls.Add(gControl);
-            gControl.Hide();
-
             //Add para MainControl
             Controls.Add(mControl);
 
             mControl.OnClickButtonPlay += OnClickToMainControl;
             lControl.OnClickButtonLogin += OnClickToLoginControl;
-
-            gControl.EndGame = () =>
-            {           
-                MessageBox.Show("Has perdido :(", "Arkanoid", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-
-                gControl.Hide();
-                lControl.Hide();
-
-                mControl.Show();
-            };
 
             mControl.hideForm = () =>
             {
@@ -74,18 +54,6 @@ namespace ProyectoArkanoid.Vista
             mControl.showForm = () =>
             {
                 Show();
-            };
-
-            gControl.WinningGame = () =>
-            {
-                PlayerController.CreateNewScore(GameData.newPlayer.nickname, GameData.score);
-
-                MessageBox.Show("Has ganado! :)", "Arkanoid", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-
-                gControl.Hide();
-                lControl.Hide();
-
-                mControl.Show();
             };
 
             mControl.hideForm = () =>
@@ -108,6 +76,40 @@ namespace ProyectoArkanoid.Vista
         private void OnClickToLoginControl(object sender, EventArgs e)
         {
             lControl.Hide();
+            GameData.InitializeGame();
+
+            gControl = new GameControls();
+
+            //Propiedades para GameControls
+            gControl.Dock = DockStyle.Fill;
+            gControl.Width = Width;
+            gControl.Height = Height;
+
+            //Se agrega el Game, pero se oculta esperando el evento click
+            Controls.Add(gControl);
+
+            gControl.WinningGame = () =>
+            {
+                PlayerController.CreateNewScore(GameData.newPlayer.nickname, GameData.score);
+
+                MessageBox.Show("Has ganado! :)", "Arkanoid", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+                gControl.Hide();
+                lControl.Hide();
+
+                mControl.Show();
+            };
+
+            gControl.EndGame = () =>
+            {
+                MessageBox.Show("Has perdido :(", "Arkanoid", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+                gControl.Hide();
+                lControl.Hide();
+
+                mControl.Show();
+            };
+
             gControl.Show();
         }
     }

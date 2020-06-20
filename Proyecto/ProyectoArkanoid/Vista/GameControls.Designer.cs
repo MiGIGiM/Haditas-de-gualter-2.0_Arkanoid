@@ -58,6 +58,7 @@
             this.Name = "GameControls";
             this.Size = new System.Drawing.Size(705, 458);
             this.Load += new System.EventHandler(this.GameControls_Load);
+            this.VisibleChanged += new System.EventHandler(this.GameControls_VisibleChanged);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GameControls_KeyDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.GameControls_MouseMove);
             ((System.ComponentModel.ISupportInitialize)(this.picPaddle)).EndInit();

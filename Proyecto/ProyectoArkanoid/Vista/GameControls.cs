@@ -29,6 +29,7 @@ namespace ProyectoArkanoid.Vista
             MovingBall = BounceBall;
             MovingBall += MoveBall;
         }
+
         protected override CreateParams CreateParams
         {
             get
@@ -140,11 +141,23 @@ namespace ProyectoArkanoid.Vista
 
         private void GameControls_KeyDown(object sender, KeyEventArgs e)
         {
-            //Al presionar la barra espaciadora, el juego comienza
-            if (e.KeyCode == Keys.Space)
+            // Al presionar la barra espaciadora, el juego comienza
+            try
             {
-                GameData.GameStarted = true;
-                timer1.Start();
+                switch (e.KeyCode)
+                {
+                    case Keys.Space:
+                        GameData.GameStarted = true;
+                        timer1.Start();
+                        break;
+                    default:
+                        throw new WrongKeyPressedException("Presione space para iniciar juego");
+                        break;
+                }
+            }
+            catch (WrongKeyPressedException ex)
+            {
+                MessageBox.Show(ex.Message, "Arkanoid", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -157,30 +170,43 @@ namespace ProyectoArkanoid.Vista
             GameData.performedTicks += 0.01;
 
             // Si por alguna razon esta nulo, no se invocara, de lo contrario se invocara
-            MovingBall?.Invoke();           
-        }
-
-        private void BounceBall()
-        {
-            if (picBall.Top < scorePanel.Height)
-                GameData.dirY = -GameData.dirY;
-
-            //Si la pelota toca la parte inferior del control, el usuario ha perdido
-            if (picBall.Bottom > Height)
+            try
             {
-                GameData.lifes--;
-                GameData.GameStarted = false;
-                timer1.Stop();
+                MovingBall?.Invoke();           
+            }
+            catch(OutOfBoundsException ex)
+            {
+                try
+                {
+                    GameData.lifes--;
+                    GameData.GameStarted = false;
+                    timer1.Stop();
 
-                RepositionElements();
-                UpdateElements();
+                    RepositionElements();
+                    UpdateElements();
 
-                if(GameData.lifes == 0)
+                    if (GameData.lifes == 0)
+                        throw new NoRemainingLifesExeption("");
+                }
+                catch (NoRemainingLifesExeption ex2)
                 {
                     timer1.Stop();
                     EndGame?.Invoke();
                 }
             }
+        }
+
+        private void BounceBall()
+        {
+            if (picBall.Top < scorePanel.Height)
+            {
+                GameData.dirY = -GameData.dirY;
+                return;
+            }
+
+            //Si la pelota toca la parte inferior del control, el usuario ha perdido
+            if (picBall.Bottom > Height)
+                throw new OutOfBoundsException("");
 
             //Si la pelota toca los bordes izq o der, rebota
             if (picBall.Left < 0 || picBall.Right > Width )
@@ -193,6 +219,7 @@ namespace ProyectoArkanoid.Vista
             if (picBall.Bounds.IntersectsWith(picPaddle.Bounds) || picBall.Top < 0)
             {
                 GameData.dirY = -GameData.dirY;
+                return;
             }
 
             //la variable i se disminuye ya que se esta iniciando desde la fila mas cercana a la pelota
@@ -225,6 +252,7 @@ namespace ProyectoArkanoid.Vista
 
                         scoreLabel.Text = GameData.score.ToString();
 
+                        // Si ya no quedan bloques, entonces de detiene el timer, se reposicionan los elementos y el jugador ha ganado
                         if(remainingPb == 0)
                         {
                             timer1.Stop();
@@ -233,7 +261,6 @@ namespace ProyectoArkanoid.Vista
 
                             WinningGame?.Invoke();
                         }
-
                         return;
                     }
                 }
@@ -316,6 +343,11 @@ namespace ProyectoArkanoid.Vista
             picBall.Left = picPaddle.Left + (picPaddle.Width / 2) - (picBall.Width / 2);
         }
 
+        private void GameControls_VisibleChanged(object sender, EventArgs e)
+        {
+            GameControls_Load(sender, e);
+        }
+
         private void UpdateElements()
         {
             // Actualiza las vidas 
@@ -323,5 +355,7 @@ namespace ProyectoArkanoid.Vista
             hearts[GameData.lifes] = null; 
 
         }
+
+
     }
 }
