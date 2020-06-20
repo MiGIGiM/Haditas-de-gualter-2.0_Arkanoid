@@ -121,7 +121,6 @@
     <Compile Include="Vista\MainControl.Designer.cs">
       <DependentUpon>MainControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Vista\WrongKeyPressedException.cs" />
     <EmbeddedResource Include="Vista\FrmTopTen.resx">
       <DependentUpon>FrmTopTen.cs</DependentUpon>
     </EmbeddedResource>

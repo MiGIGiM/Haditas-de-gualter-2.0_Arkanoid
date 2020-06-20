@@ -24,18 +24,18 @@ namespace ProyectoArkanoid.Vista
         {
             if (MessageBox.Show("¿Seguro que desea salir?",
                 "Arkanoid", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
                 Application.Exit();
-            }            
         }
 
         private void BtnLeaderboards_Click(object sender, EventArgs e)
         {
-            FrmTopTen ft = new FrmTopTen();
-
-            ft.CloseAction = () =>
+            // Instanciacion del objeto 
+            FrmTopTen ft = new FrmTopTen
             {
-                showForm?.Invoke();
+                CloseAction = () =>
+                {
+                    showForm?.Invoke();
+                }
             };
 
             hideForm?.Invoke();

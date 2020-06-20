@@ -78,12 +78,15 @@ namespace ProyectoArkanoid.Vista
             int xAxis = 10, yAxis = 6;
             remainingPb = xAxis * yAxis;
 
+            // Calculos para la ubicación de los elementos
             int pbHeight = (int)(Height * 0.4) / yAxis;
             int pbWidth = (int)(Width - (Width * 0.45) - (xAxis - 5)) / xAxis;
             valorExtraWidth = (int)(Width *0.45) / 2;
             valorExtraHeight = (int)(Height * 0.20) / 2;
 
             cpb = new CustomPictureBox[yAxis, xAxis];
+
+            // Llenado de bloques con logica de matrices
 
             for (int i = 0; i < yAxis; i++)
             {
@@ -124,6 +127,8 @@ namespace ProyectoArkanoid.Vista
 
         private void GameControls_MouseMove(object sender, MouseEventArgs e)
         {
+            // Delimitacion del movimiento del mouse, es decir, que este no se salga de los bordes
+            // de la ventana 
             if (!GameData.GameStarted)
             {
                 if (e.X < (Width - picPaddle.Width))
@@ -170,6 +175,7 @@ namespace ProyectoArkanoid.Vista
             GameData.performedTicks += 0.01;
 
             // Si por alguna razon esta nulo, no se invocara, de lo contrario se invocara
+            // Se hace un try catch dentro de otro try catch, para optimizar el código
             try
             {
                 MovingBall?.Invoke();           
@@ -297,6 +303,7 @@ namespace ProyectoArkanoid.Vista
 
                 hearts[i].Height = hearts[i].Width = scorePanel.Height;
 
+                // Poblar con corazones el panel 
                 hearts[i].BackgroundImage = Image.FromFile("../../Resources/VIDA3.png");
                 hearts[i].BackgroundImageLayout = ImageLayout.Stretch;
 
@@ -355,7 +362,5 @@ namespace ProyectoArkanoid.Vista
             hearts[GameData.lifes] = null; 
 
         }
-
-
     }
 }

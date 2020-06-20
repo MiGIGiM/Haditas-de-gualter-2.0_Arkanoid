@@ -1,6 +1,5 @@
 ﻿using ProyectoArkanoid.Controladores;
 using System.Drawing;
-using System.Linq.Expressions;
 using System.Windows.Forms;
 
 namespace ProyectoArkanoid.Vista
@@ -22,6 +21,7 @@ namespace ProyectoArkanoid.Vista
 
         private void FrmTopTen_Load(object sender, System.EventArgs e)
         {
+            // Poblando el data grit con los datos obtenidos de la consulta a la base de datos
             dataGridView1.DataSource = PlayerController.GetScoreTable();
             dataGridView1.DefaultCellStyle.ForeColor = Color.Black;
         }

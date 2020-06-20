@@ -19,6 +19,7 @@ namespace ProyectoArkanoid.Vista
         {
             try
             {
+                // Se utiliza switch para optimizar el código 
                 switch (tb_usuarios.Text)
                 {
                     case string aux when aux.Trim().Length == 0:

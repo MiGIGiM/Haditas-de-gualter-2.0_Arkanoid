@@ -88,6 +88,7 @@ namespace ProyectoArkanoid.Vista
             //Se agrega el Game, pero se oculta esperando el evento click
             Controls.Add(gControl);
 
+            // se realizara cuando el jugador gane 
             gControl.WinningGame = () =>
             {
                 PlayerController.CreateNewScore(GameData.newPlayer.nickname, GameData.score);
@@ -100,6 +101,7 @@ namespace ProyectoArkanoid.Vista
                 mControl.Show();
             };
 
+            // se realizara cuando el jugador pierda
             gControl.EndGame = () =>
             {
                 MessageBox.Show("Has perdido :(", "Arkanoid", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
