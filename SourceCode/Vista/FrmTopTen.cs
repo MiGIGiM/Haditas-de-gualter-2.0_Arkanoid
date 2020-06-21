@@ -22,8 +22,8 @@ namespace ProyectoArkanoid.Vista
         private void FrmTopTen_Load(object sender, System.EventArgs e)
         {
             // Poblando el data grit con los datos obtenidos de la consulta a la base de datos
-            dataGridView1.DataSource = PlayerController.GetScoreTable();
-            dataGridView1.DefaultCellStyle.ForeColor = Color.Black;
+            dgvTopPlayers.DataSource = PlayerController.GetScoreTable();
+            dgvTopPlayers.DefaultCellStyle.ForeColor = Color.Black;
         }
     }
 }
