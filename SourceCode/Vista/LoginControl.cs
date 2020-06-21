@@ -20,7 +20,7 @@ namespace ProyectoArkanoid.Vista
             try
             {
                 // Se utiliza switch para optimizar el código 
-                switch (tb_usuarios.Text)
+                switch (txtNickname.Text)
                 {
                     case string aux when aux.Trim().Length == 0:
                         throw new EmptyNicknameException("No has ingresado un nickname");
@@ -29,7 +29,7 @@ namespace ProyectoArkanoid.Vista
                     default:
                         // Si el usuario ya existe en la base, solo se muestra su nuevo, si no existe, entonces se agrega a la base de datos
                         var dt = ConnectionDB.ExecuteQuery("SELECT * FROM PLAYER" +
-                       $" WHERE nickname = '{tb_usuarios.Text}'");
+                       $" WHERE nickname = '{txtNickname.Text}'");
 
                         if (dt.Rows.Count > 0)
                         {
@@ -40,11 +40,11 @@ namespace ProyectoArkanoid.Vista
                             MessageBox.Show("Bienvenido " + currentPlayer.nickname, "Arkanoid", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         else
-                            ConnectionDB.ExecutenonQuery($"INSERT INTO PLAYER(nickname) VALUES('{tb_usuarios.Text}')");
+                            ConnectionDB.ExecutenonQuery($"INSERT INTO PLAYER(nickname) VALUES('{txtNickname.Text}')");
 
                         OnClickButtonLogin?.Invoke(this, e);
 
-                        GameData.newPlayer.nickname = tb_usuarios.Text;
+                        GameData.newPlayer.nickname = txtNickname.Text;
 
                         break;
                 }

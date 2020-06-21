@@ -38,7 +38,7 @@
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.btnLogin = new System.Windows.Forms.Button();
-            this.tb_usuarios = new System.Windows.Forms.TextBox();
+            this.txtNickname = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
@@ -70,7 +70,7 @@
             this.tableLayoutPanel1.Controls.Add(this.pictureBox4, 4, 0);
             this.tableLayoutPanel1.Controls.Add(this.pictureBox3, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnLogin, 3, 2);
-            this.tableLayoutPanel1.Controls.Add(this.tb_usuarios, 3, 1);
+            this.tableLayoutPanel1.Controls.Add(this.txtNickname, 3, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -191,13 +191,13 @@
             // 
             // tb_usuarios
             // 
-            this.tb_usuarios.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.tableLayoutPanel1.SetColumnSpan(this.tb_usuarios, 3);
-            this.tb_usuarios.Font = new System.Drawing.Font("ArcadeClassic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_usuarios.Location = new System.Drawing.Point(453, 213);
-            this.tb_usuarios.Name = "tb_usuarios";
-            this.tb_usuarios.Size = new System.Drawing.Size(250, 35);
-            this.tb_usuarios.TabIndex = 2;
+            this.txtNickname.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.tableLayoutPanel1.SetColumnSpan(this.txtNickname, 3);
+            this.txtNickname.Font = new System.Drawing.Font("ArcadeClassic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNickname.Location = new System.Drawing.Point(453, 213);
+            this.txtNickname.Name = "tb_usuarios";
+            this.txtNickname.Size = new System.Drawing.Size(250, 35);
+            this.txtNickname.TabIndex = 2;
             // 
             // LoginControl
             // 
@@ -224,7 +224,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox tb_usuarios;
+        private System.Windows.Forms.TextBox txtNickname;
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox4;

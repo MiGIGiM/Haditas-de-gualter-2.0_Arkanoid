@@ -11,8 +11,8 @@ namespace ProyectoArkanoid.Vista
         int valorExtraHeight;
 
         private CustomPictureBox[,] cpb;
-        private Panel scorePanel;
-        private Label scoreLabel;
+        private Panel pnlScore;
+        private Label lblScore;
         private PictureBox picBall;
         private PictureBox[] hearts;
 
@@ -30,6 +30,7 @@ namespace ProyectoArkanoid.Vista
             MovingBall += MoveBall;
         }
 
+        //Evita que se este mostrando espacios en blanco mientras se mueve la pelota o barra
         protected override CreateParams CreateParams
         {
             get
@@ -110,7 +111,7 @@ namespace ProyectoArkanoid.Vista
 
                     //Posicion de left y posicion de top
                     cpb[i, j].Left = valorExtraWidth + (j * pbWidth);
-                    cpb[i, j].Top = valorExtraHeight + (i * pbHeight) + scorePanel.Height;
+                    cpb[i, j].Top = valorExtraHeight + (i * pbHeight) + pnlScore.Height;
 
                     cpb[i, j].BackgroundImageLayout = ImageLayout.Stretch;
                     cpb[i, j].Tag = "tileTag";
@@ -149,15 +150,18 @@ namespace ProyectoArkanoid.Vista
             // Al presionar la barra espaciadora, el juego comienza
             try
             {
-                switch (e.KeyCode)
+                //Verifica que el juego no haya comenzado
+                if (!GameData.GameStarted)
                 {
-                    case Keys.Space:
-                        GameData.GameStarted = true;
-                        timer1.Start();
-                        break;
-                    default:
-                        throw new WrongKeyPressedException("Presione space para iniciar juego");
-                        break;
+                    switch (e.KeyCode)
+                    {
+                        case Keys.Space:
+                            GameData.GameStarted = true;
+                            timer1.Start();
+                            break;
+                        default:
+                            throw new WrongKeyPressedException("Presione space para iniciar juego");
+                    }
                 }
             }
             catch (WrongKeyPressedException ex)
@@ -204,7 +208,7 @@ namespace ProyectoArkanoid.Vista
 
         private void BounceBall()
         {
-            if (picBall.Top < scorePanel.Height)
+            if (picBall.Top < pnlScore.Height)
             {
                 GameData.dirY = -GameData.dirY;
                 return;
@@ -256,7 +260,7 @@ namespace ProyectoArkanoid.Vista
 
                         GameData.dirY = -GameData.dirY;
 
-                        scoreLabel.Text = GameData.score.ToString();
+                        lblScore.Text = GameData.score.ToString();
 
                         // Si ya no quedan bloques, entonces de detiene el timer, se reposicionan los elementos y el jugador ha ganado
                         if(remainingPb == 0)
@@ -282,15 +286,15 @@ namespace ProyectoArkanoid.Vista
         private void ScorePanel()
         {
             // Instanciar panel
-            scorePanel = new Panel();
+            pnlScore = new Panel();
 
             // Instanciar elementos del panel
-            scorePanel.Width = Width;
-            scorePanel.Height = (int)(Height * 0.08);
+            pnlScore.Width = Width;
+            pnlScore.Height = (int)(Height * 0.08);
 
-            scorePanel.Top = scorePanel.Left = 0;
+            pnlScore.Top = pnlScore.Left = 0;
 
-            scorePanel.BackColor = Color.FromArgb(44, 9, 64);
+            pnlScore.BackColor = Color.FromArgb(44, 9, 64);
 
             // Trabajando con los corazones   
 
@@ -301,7 +305,7 @@ namespace ProyectoArkanoid.Vista
                 // Instanciar picture box
                 hearts[i] = new PictureBox();
 
-                hearts[i].Height = hearts[i].Width = scorePanel.Height;
+                hearts[i].Height = hearts[i].Width = pnlScore.Height;
 
                 // Poblar con corazones el panel 
                 hearts[i].BackgroundImage = Image.FromFile("../../Resources/VIDA3.png");
@@ -315,7 +319,7 @@ namespace ProyectoArkanoid.Vista
                     hearts[i].Left = hearts[i - 1].Right + 5;
             }
 
-            scoreLabel = new Label
+            lblScore = new Label
             {
                 // Setear elementos de los labels
                 ForeColor = Color.White,
@@ -326,18 +330,18 @@ namespace ProyectoArkanoid.Vista
                 TextAlign = ContentAlignment.MiddleCenter,
 
                 Left = Width - 100,
-                Height = scorePanel.Height
+                Height = pnlScore.Height
             };
 
-            scorePanel.Controls.Add(scoreLabel);
+            pnlScore.Controls.Add(lblScore);
 
             // Poblando los corazones
             foreach(var pb in hearts)
             {
-                scorePanel.Controls.Add(pb);
+                pnlScore.Controls.Add(pb);
             }
  
-            Controls.Add(scorePanel);
+            Controls.Add(pnlScore);
         }
 
         private void RepositionElements()
@@ -358,7 +362,7 @@ namespace ProyectoArkanoid.Vista
         private void UpdateElements()
         {
             // Actualiza las vidas 
-            scorePanel.Controls.Remove(hearts[GameData.lifes]);
+            pnlScore.Controls.Remove(hearts[GameData.lifes]);
             hearts[GameData.lifes] = null; 
 
         }
