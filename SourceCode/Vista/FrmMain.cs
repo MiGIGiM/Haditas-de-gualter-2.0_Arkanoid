@@ -1,6 +1,8 @@
 ﻿using ProyectoArkanoid.Controladores;
 using System;
 using System.Windows.Forms;
+using WMPLib;
+using System.Media;
 
 namespace ProyectoArkanoid.Vista
 {
@@ -9,7 +11,7 @@ namespace ProyectoArkanoid.Vista
         private MainControl mControl;
         private GameControls gControl;
         private LoginControl lControl;
-
+        private SoundPlayer player;
         public FrmMain()
         {
             InitializeComponent();
@@ -19,14 +21,20 @@ namespace ProyectoArkanoid.Vista
             Width = ClientSize.Width;
             WindowState = FormWindowState.Maximized;
             
+
             mControl = new MainControl();
             
             lControl = new LoginControl();
+
+           player = new SoundPlayer(@"galaga-sound-track.wav");
         }
         
+        
         private void FrmMain_Load(object sender, EventArgs e)
-        {      
-            //Prpiedades para MainControl
+        { 
+            
+            
+            //Propiedades para MainControl
             mControl.Dock = DockStyle.Fill;
             mControl.Width = Width;
             mControl.Height = Height;
@@ -65,6 +73,7 @@ namespace ProyectoArkanoid.Vista
             {
                 Show();
             };
+            
         }
         
         private void OnClickToMainControl(object sender, EventArgs e)
@@ -75,6 +84,7 @@ namespace ProyectoArkanoid.Vista
         
         private void OnClickToLoginControl(object sender, EventArgs e)
         {
+            player.PlayLooping();
             lControl.Hide();
             GameData.InitializeGame();
 

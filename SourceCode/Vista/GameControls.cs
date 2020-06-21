@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using ProyectoArkanoid.Controladores;
 
+
 namespace ProyectoArkanoid.Vista
 {
     public partial class GameControls : UserControl
@@ -21,13 +22,14 @@ namespace ProyectoArkanoid.Vista
         private delegate void AccionesPelota();
         private readonly AccionesPelota MovingBall;
         public Action EndGame, WinningGame;
-
+        
         public GameControls()
         {
             InitializeComponent();
 
             MovingBall = BounceBall;
             MovingBall += MoveBall;
+            
         }
 
         protected override CreateParams CreateParams
@@ -42,6 +44,7 @@ namespace ProyectoArkanoid.Vista
 
         private void GameControls_Load(object sender, EventArgs e)
         {
+          
             // Se invoca el metodo que contiene el panel con la vida y los puntajes
             ScorePanel();
 

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\aleja\AppData\Local\JetBrains\Rider2020.1\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\aleja\AppData\Local\JetBrains\Rider2020.1\resharper-host\Local\Transient\ReSharperHost\v201\SolutionCaches\_ProyectoArkanoid.-1589777537.00" t="ExcludeRecursive" />
+    <e p="C:\Users\aleja\Desktop\Haditas-de-gualter-2.0_Arkanoid\Proyecto\ProyectoArkanoid" t="IncludeRecursive">
+      <e p="App.config" t="Include" />
+      <e p="bin" t="ExcludeRecursive" />
+      <e p="Controladores" t="Include">
+        <e p="ConexionDB.cs" t="Include" />
+        <e p="Usuario.cs" t="Include" />
+      </e>
+      <e p="GameControl.cs" t="Include" />
+      <e p="GameControl.Designer.cs" t="Include" />
+      <e p="GameControl.resx" t="Include" />
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="packages.config" t="Include" />
+      <e p="Program.cs" t="Include" />
+      <e p="Properties" t="Include">
+        <e p="AssemblyInfo.cs" t="Include" />
+        <e p="Resources.Designer.cs" t="Include" />
+        <e p="Resources.resx" t="Include" />
+        <e p="Settings.Designer.cs" t="Include" />
+        <e p="Settings.settings" t="Include" />
+      </e>
+      <e p="ProyectoArkanoid.csproj" t="IncludeRecursive" />
+      <e p="ProyectoArkanoid.sln" t="IncludeFlat" />
+      <e p="Resources" t="Include">
+        <e p="Alien1.png" t="Include" />
+        <e p="ball.png" t="Include" />
+        <e p="Fondo_05.png" t="Include" />
+        <e p="Fondo_06.jpeg" t="Include" />
+        <e p="LogoArka.png" t="Include" />
+        <e p="paddle.png" t="Include" />
+        <e p="Vida .png" t="Include" />
+      </e>
+      <e p="Vista" t="Include">
+        <e p="FrmMain.cs" t="Include" />
+        <e p="FrmMain.Designer.cs" t="Include" />
+        <e p="FrmMain.resx" t="Include" />
+        <e p="LoginControl.cs" t="Include" />
+        <e p="LoginControl.Designer.cs" t="Include" />
+        <e p="LoginControl.resx" t="Include" />
+        <e p="MainControl.cs" t="Include" />
+        <e p="MainControl.Designer.cs" t="Include" />
+        <e p="MainControl.resx" t="Include" />
+      </e>
+    </e>
+  </component>
+</project>
